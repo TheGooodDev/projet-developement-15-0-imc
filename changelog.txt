@@ -1,3 +1,8 @@
+Build: 1.18.1-39.0.20 - Fri Jan 14 15:06:18 GMT 2022
+	diesieben07:
+		Fix and improve Ingredient invalidation (#8361)
+
+=========
 Build: 1.18.1-39.0.19 - Wed Jan 12 02:00:21 GMT 2022
 	35673674+alcatrazescapee:
 		Rework world persistence hooks to fix the double registry injection when loading single player worlds. (#8234)
