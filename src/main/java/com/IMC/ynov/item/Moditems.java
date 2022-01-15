@@ -13,10 +13,10 @@ public class Moditems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Mod.MOD_ID);
 
     public static final RegistryObject<Item> hugo = ITEMS.register("hugo",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.YNOV_TAB)));
 
     public static final RegistryObject<Item> thomas = ITEMS.register("thomas",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.YNOV_TAB)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
