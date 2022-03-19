@@ -9,11 +9,11 @@
 4. [Creator](#creator)
 ### General Info
 ***
-This mod will add new content to minecraft, that will upgrade user experience.
-With:
-New block 🟦
-New Tools 🔨
-And Companion 🐶👷
+This mod will add new content to minecraft, that will upgrade user experience.<br>
+With:<br>
+New block 🟦<br>
+New Tools 🔨<br>
+And Companion 🐶👷<br>
 ### Screenshot
 ![Image text](https://img.lemde.fr/2012/05/14/64/0/1024/512/664/0/75/0/ill_1701005_6005_minecraft.jpg)
 ## Technologies
