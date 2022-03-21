@@ -2,7 +2,7 @@
 ec4fa93064a3483157c0fc597f8411c4785bb8db assets/ynov/blockstates/mysterious_ore_end.json
 0887e110e56d196832ebea76d86b8af1445b6849 assets/ynov/blockstates/mysterious_ore_nether.json
 2a029a794c24d2056878824df5c5144851e0a895 assets/ynov/blockstates/mysterious_ore_overworld.json
-69266fc3392b5105987260c0cd8dc53259b5dce7 assets/ynov/lang/en_us.json
+810daa6559ed43a3b8f432bd54be8247bc6f39ed assets/ynov/lang/en_us.json
 b92701a29faee2f318934ada3b19faa35b7f2c95 assets/ynov/models/block/mysterious_ore_deepslate.json
 49945880180de81942ec9970162c5358ac36d832 assets/ynov/models/block/mysterious_ore_end.json
 5e4f5dc427544d82473c832fab238790d5289f89 assets/ynov/models/block/mysterious_ore_nether.json
@@ -11,6 +11,7 @@ b92701a29faee2f318934ada3b19faa35b7f2c95 assets/ynov/models/block/mysterious_ore
 20d7c90e8ac70f043288d0d84a985bfc180d0c88 assets/ynov/models/item/mysterious_ore_end.json
 c098d5572ae4a40ce0fc262a6bcf372254ea112c assets/ynov/models/item/mysterious_ore_nether.json
 12206e3453775af282d9d02e770d6bd52f2ed534 assets/ynov/models/item/mysterious_ore_overworld.json
+98167609bf3898587f7565736a6fc24a7966cacd assets/ynov/models/item/thief.json
 6faed4153031b7171d8d6a7dc8b300356dce36f1 data/forge/tags/blocks/ores.json
 6faed4153031b7171d8d6a7dc8b300356dce36f1 data/forge/tags/items/ores.json
 6faed4153031b7171d8d6a7dc8b300356dce36f1 data/minecraft/tags/blocks/mineable/pickaxe.json

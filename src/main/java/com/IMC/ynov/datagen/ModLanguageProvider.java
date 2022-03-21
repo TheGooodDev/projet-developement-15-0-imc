@@ -7,9 +7,9 @@ import net.minecraftforge.common.data.LanguageProvider;
 
 import static com.IMC.ynov.setup.ModSetup.TAB_NAME;
 
-public class TutLanguageProvider extends LanguageProvider {
+public class ModLanguageProvider extends LanguageProvider {
 
-    public TutLanguageProvider(DataGenerator gen, String locale) {
+    public ModLanguageProvider(DataGenerator gen, String locale) {
         super(gen, CompanionMod.MODID, locale);
     }
 
@@ -21,5 +21,9 @@ public class TutLanguageProvider extends LanguageProvider {
         add(Registration.MYSTERIOUS_ORE_NETHER.get(), "Mysterious ore");
         add(Registration.MYSTERIOUS_ORE_END.get(), "Mysterious ore");
         add(Registration.MYSTERIOUS_ORE_DEEPSLATE.get(), "Mysterious ore");
+        add(Registration.THIEF_EGG.get(), "Thief egg");
+
+        add(Registration.THIEF.get(), "Thief");
+
     }
 }

@@ -6,9 +6,9 @@ import net.minecraft.data.recipes.RecipeProvider;
 
 import java.util.function.Consumer;
 
-public class TutRecipes extends RecipeProvider {
+public class ModRecipes extends RecipeProvider {
 
-    public TutRecipes(DataGenerator generatorIn) {
+    public ModRecipes(DataGenerator generatorIn) {
         super(generatorIn);
     }
 

@@ -8,9 +8,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class TutBlockTags extends BlockTagsProvider {
+public class ModBlockTags extends BlockTagsProvider {
 
-    public TutBlockTags(DataGenerator generator, ExistingFileHelper helper) {
+    public ModBlockTags(DataGenerator generator, ExistingFileHelper helper) {
         super(generator, CompanionMod.MODID, helper);
     }
 

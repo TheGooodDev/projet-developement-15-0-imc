@@ -2,9 +2,9 @@ package com.IMC.ynov.datagen;
 
 import net.minecraft.data.DataGenerator;
 
-public class TutLootTables extends BaseLootTableProvider {
+public class ModLootTables extends BaseLootTableProvider {
 
-    public TutLootTables(DataGenerator dataGeneratorIn) {
+    public ModLootTables(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn);
     }
 
