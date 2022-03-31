@@ -21,9 +21,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add(Registration.MYSTERIOUS_ORE_NETHER.get(), "Mysterious ore");
         add(Registration.MYSTERIOUS_ORE_END.get(), "Mysterious ore");
         add(Registration.MYSTERIOUS_ORE_DEEPSLATE.get(), "Mysterious ore");
-        add(Registration.THIEF_EGG.get(), "Thief egg");
+        add(Registration.THIEF_EGG.get(), "Companion egg");
 
-        add(Registration.THIEF.get(), "Thief");
+        add(Registration.THIEF.get(), "Companion");
 
     }
 }

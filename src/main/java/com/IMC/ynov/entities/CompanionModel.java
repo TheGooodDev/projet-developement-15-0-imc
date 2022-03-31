@@ -9,18 +9,18 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.resources.ResourceLocation;
 
-public class ThiefModel extends HumanoidModel<ThiefEntity> {
+public class CompanionModel extends HumanoidModel<CompanionEntity> {
 
     public static final String BODY = "body";
 
-    public static ModelLayerLocation THIEF_LAYER = new ModelLayerLocation(new ResourceLocation(CompanionMod.MODID, "thief"), BODY);
+    public static ModelLayerLocation COMPANION_LAYER = new ModelLayerLocation(new ResourceLocation(CompanionMod.MODID, "companion"), BODY);
 
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = createMesh(CubeDeformation.NONE, 0.6f);
         return LayerDefinition.create(meshdefinition, 64, 32);
     }
 
-    public ThiefModel(ModelPart part) {
+    public CompanionModel(ModelPart part) {
         super(part);
     }
 }

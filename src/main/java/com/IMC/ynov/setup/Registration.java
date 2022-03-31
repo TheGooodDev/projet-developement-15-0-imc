@@ -1,6 +1,6 @@
 package com.IMC.ynov.setup;
 
-import com.IMC.ynov.entities.ThiefEntity;
+import com.IMC.ynov.entities.CompanionEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
@@ -43,7 +43,7 @@ public class Registration {
     public static final RegistryObject<Block> MYSTERIOUS_ORE_DEEPSLATE = BLOCKS.register("mysterious_ore_deepslate", () -> new Block(ORE_PROPERTIES));
     public static final RegistryObject<Item> MYSTERIOUS_ORE_DEEPSLATE_ITEM = fromBlock(MYSTERIOUS_ORE_DEEPSLATE);
 
-    public static final RegistryObject<EntityType<ThiefEntity>> THIEF = ENTITIES.register("thief", () -> EntityType.Builder.of(ThiefEntity::new, MobCategory.CREATURE)
+    public static final RegistryObject<EntityType<CompanionEntity>> THIEF = ENTITIES.register("thief", () -> EntityType.Builder.of(CompanionEntity::new, MobCategory.CREATURE)
             .sized(0.6f, 1.95f)
             .clientTrackingRange(8)
             .setShouldReceiveVelocityUpdates(false)

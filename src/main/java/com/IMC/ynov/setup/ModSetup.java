@@ -1,7 +1,7 @@
 package com.IMC.ynov.setup;
 
 import com.IMC.ynov.CompanionMod;
-import com.IMC.ynov.entities.ThiefEntity;
+import com.IMC.ynov.entities.CompanionEntity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -30,7 +30,7 @@ public class ModSetup {
 
     @SubscribeEvent
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
-        event.put(Registration.THIEF.get(), ThiefEntity.prepareAttributes().build());
+        event.put(Registration.THIEF.get(), CompanionEntity.prepareAttributes().build());
     }
 
 }
