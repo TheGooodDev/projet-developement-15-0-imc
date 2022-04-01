@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "ynov:block/pear_planks",
+    "top": "ynov:block/pear_planks",
+    "side": "ynov:block/pear_planks"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "ynov:block/pear_leaves_block"
+  }
+}
