@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "ynov:block/pear_log",
+    "side": "ynov:block/pear_log"
+  }
+}

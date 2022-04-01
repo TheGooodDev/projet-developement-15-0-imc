@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "ynov:banana_planks"
+    }
+  ],
+  "result": {
+    "item": "ynov:banana_button"
+  }
+}

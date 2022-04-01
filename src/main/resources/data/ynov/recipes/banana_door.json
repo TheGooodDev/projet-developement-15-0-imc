@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_door",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "ynov:banana_planks"
+    }
+  },
+  "result": {
+    "item": "ynov:banana_door",
+    "count": 3
+  }
+}

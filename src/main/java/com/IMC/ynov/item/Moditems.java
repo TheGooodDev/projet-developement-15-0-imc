@@ -18,6 +18,18 @@ public class Moditems {
     public static final RegistryObject<Item> thomas = ITEMS.register("thomas",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.YNOV_TAB)));
 
+    public static final RegistryObject<Item> PEAR = ITEMS.register("pear",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.YNOV_TAB).food(ModFoods.PEAR)));
+
+    public static final RegistryObject<Item> ORANGE = ITEMS.register("orange",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.YNOV_TAB).food(ModFoods.ORANGE)));
+
+    public static final RegistryObject<Item> BANANA = ITEMS.register("banana",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.YNOV_TAB).food(ModFoods.BANANA)));
+
+    public static final RegistryObject<Item> FRUIT_SALAD = ITEMS.register("fruit_salad",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.YNOV_TAB).food(ModFoods.FRUIT_SALAD)));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

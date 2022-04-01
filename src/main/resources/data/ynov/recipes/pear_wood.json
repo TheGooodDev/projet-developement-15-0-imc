@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "ynov:pear_log"
+    }
+  },
+  "result": {
+    "item": "ynov:pear_wood",
+    "count": 3
+  }
+}

@@ -1,6 +1,10 @@
 package com.IMC.ynov;
 
+import com.IMC.ynov.block.ModBlock;
 import com.IMC.ynov.item.Moditems;
+import com.IMC.ynov.world.features.ModFeatures;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -8,6 +12,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -30,12 +35,25 @@ public class Mod
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         Moditems.register(eventBus);
+        ModBlock.register((eventBus));
+        ModFeatures.register((eventBus));
 
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::clientSetup);
 
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event){
+        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_SAPLING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_LEAVES_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlock.BANANA_SAPLING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_DOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_TRAPDOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlock.BANANA_DOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlock.BANANA_TRAPDOOR.get(), RenderType.translucent());
     }
 
     private void setup(final FMLCommonSetupEvent event)

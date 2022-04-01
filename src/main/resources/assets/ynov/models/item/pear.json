@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ynov:item/thomas"
+    "layer0": "ynov:item/pear"
   }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "ynov:banana_log"
+    }
+  ],
+  "result": {
+    "item": "ynov:banana_planks",
+    "count": 4
+  }
+}

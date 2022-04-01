@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ynov:item/hugo"
+    "layer0": "ynov:block/pear_sapling"
   }
 }
