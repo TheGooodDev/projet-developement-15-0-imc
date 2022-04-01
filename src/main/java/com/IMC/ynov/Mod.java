@@ -1,7 +1,7 @@
 package com.IMC.ynov;
 
-import com.IMC.ynov.block.ModBlock;
-import com.IMC.ynov.item.Moditems;
+
+import com.IMC.ynov.setup.Registration;
 import com.IMC.ynov.world.features.ModFeatures;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -33,9 +33,6 @@ public class Mod
 
     public Mod() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        Moditems.register(eventBus);
-        ModBlock.register((eventBus));
         ModFeatures.register((eventBus));
 
         eventBus.addListener(this::setup);
@@ -47,13 +44,13 @@ public class Mod
     }
 
     private void clientSetup(final FMLClientSetupEvent event){
-        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_SAPLING.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_LEAVES_BLOCK.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlock.BANANA_SAPLING.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_DOOR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModBlock.PEAR_TRAPDOOR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModBlock.BANANA_DOOR.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModBlock.BANANA_TRAPDOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_SAPLING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_LEAVES_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(Registration.BANANA_SAPLING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_DOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_TRAPDOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.BANANA_DOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.BANANA_TRAPDOOR.get(), RenderType.translucent());
     }
 
     private void setup(final FMLCommonSetupEvent event)

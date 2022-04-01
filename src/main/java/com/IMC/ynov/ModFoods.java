@@ -1,4 +1,4 @@
-package com.IMC.ynov.item;
+package com.IMC.ynov;
 
 import net.minecraft.world.food.FoodProperties;
 

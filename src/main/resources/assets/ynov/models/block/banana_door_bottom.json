@@ -1,7 +1,0 @@
-{
-  "parent": "block/door_bottom",
-  "textures": {
-    "top": "ynov:block/banana_door_top",
-    "bottom": "ynov:block/banana_door_bottom"
-  }
-}

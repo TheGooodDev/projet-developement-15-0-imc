@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "ynov:block/banana_sapling"
-  }
-}

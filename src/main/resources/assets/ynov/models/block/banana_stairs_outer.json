@@ -1,8 +1,0 @@
-{
-  "parent": "block/outer_stairs",
-  "textures": {
-    "bottom": "ynov:block/banana_planks",
-    "top": "ynov:block/banana_planks",
-    "side": "ynov:block/banana_planks"
-  }
-}

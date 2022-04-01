@@ -1,5 +1,6 @@
 package com.IMC.ynov.datagen;
 
+import com.IMC.ynov.setup.Registration;
 import net.minecraft.data.DataGenerator;
 
 public class ModLootTables extends BaseLootTableProvider {

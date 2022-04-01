@@ -1,6 +1,7 @@
 package com.IMC.ynov.world.features;
 
-import com.IMC.ynov.block.ModBlock;
+
+import com.IMC.ynov.setup.Registration;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -20,9 +21,9 @@ public class ModConfiguredFeatures {
 
     public static final ConfiguredFeature<TreeConfiguration, ?> PEARWOOD = register("pearwood", ModFeatures.PEAR_TREE.get().configured(
             new TreeConfiguration.TreeConfigurationBuilder(
-                    BlockStateProvider.simple(ModBlock.PEAR_LOG.get().defaultBlockState()),
+                    BlockStateProvider.simple(Registration.PEAR_LOG.get().defaultBlockState()),
                     new StraightTrunkPlacer(5, 1, 2),
-                    BlockStateProvider.simple(ModBlock.PEAR_LEAVES_BLOCK.get().defaultBlockState()),
+                    BlockStateProvider.simple(Registration.PEAR_LEAVES_BLOCK.get().defaultBlockState()),
                     new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(3), 4),
                     new TwoLayersFeatureSize(1, 0, 1)).build()));
 

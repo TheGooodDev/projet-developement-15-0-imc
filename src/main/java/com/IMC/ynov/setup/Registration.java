@@ -1,13 +1,16 @@
 package com.IMC.ynov.setup;
 
+
 import com.IMC.ynov.entities.CompanionEntity;
+import com.IMC.ynov.ModFoods;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -32,6 +35,7 @@ public class Registration {
 
     // Some common properties for our blocks and items
     public static final BlockBehaviour.Properties ORE_PROPERTIES = BlockBehaviour.Properties.of(Material.STONE).strength(2f);
+    public static final BlockBehaviour.Properties WOOD = BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD);
     public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ModSetup.ITEM_GROUP);
 
     public static final RegistryObject<Block> MYSTERIOUS_ORE_OVERWORLD = BLOCKS.register("mysterious_ore_overworld", () -> new Block(ORE_PROPERTIES));
@@ -42,6 +46,460 @@ public class Registration {
     public static final RegistryObject<Item> MYSTERIOUS_ORE_END_ITEM = fromBlock(MYSTERIOUS_ORE_END);
     public static final RegistryObject<Block> MYSTERIOUS_ORE_DEEPSLATE = BLOCKS.register("mysterious_ore_deepslate", () -> new Block(ORE_PROPERTIES));
     public static final RegistryObject<Item> MYSTERIOUS_ORE_DEEPSLATE_ITEM = fromBlock(MYSTERIOUS_ORE_DEEPSLATE);
+    public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_WOOD = BLOCKS.register("pear_wood", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_DOOR = BLOCKS.register("pear_door", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_PRESSURE_PLATE = BLOCKS.register("pear_pressure_plate", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_SLAB = BLOCKS.register("pear_slab", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_STAIRS = BLOCKS.register("pear_stairs", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_BUTTON = BLOCKS.register("pear_button", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_FENCE = BLOCKS.register("pear_fence", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_FENCE_GATE = BLOCKS.register("pear_fence_gate", () -> new Block(WOOD));
+    public static final RegistryObject<Block> PEAR_LEAVES_BLOCK = BLOCKS.register("pear_leaves_block", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_WOOD = BLOCKS.register("banana_wood", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_DOOR = BLOCKS.register("banana_door", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_TRAPDOOR = BLOCKS.register("banana_trapdoor", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_PRESSURE_PLATE = BLOCKS.register("banana_pressure_plate", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_SLAB = BLOCKS.register("banana_slab", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_STAIRS = BLOCKS.register("banana_stairs", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_BUTTON = BLOCKS.register("banana_button", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_FENCE = BLOCKS.register("banana_fence", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_FENCE_GATE = BLOCKS.register("banana_fence_gate", () -> new Block(WOOD));
+    public static final RegistryObject<Block> BANANA_LEAVES_BLOCK = BLOCKS.register("banana_leaves_block", () -> new Block(WOOD));
+    public static final RegistryObject<Item> PEAR_FENCE_ITEM = fromBlock(PEAR_FENCE);
+    public static final RegistryObject<Item> PEAR_FENCE_GATE_ITEM = fromBlock(PEAR_FENCE_GATE);
+    public static final RegistryObject<Item> BANANA_FENCE_ITEM = fromBlock(BANANA_FENCE);
+    public static final RegistryObject<Item> BANANA_FENCE_GATE_ITEM = fromBlock(BANANA_FENCE_GATE);
+
+    public static final RegistryObject<Item> PEAR = ITEMS.register("pear",
+            () -> new Item(new Item.Properties().food(ModFoods.PEAR)));
+
+    public static final RegistryObject<Item> ORANGE = ITEMS.register("orange",
+            () -> new Item(new Item.Properties().food(ModFoods.ORANGE)));
+
+    public static final RegistryObject<Item> BANANA = ITEMS.register("banana",
+            () -> new Item(new Item.Properties().food(ModFoods.BANANA)));
+
+    public static final RegistryObject<Item> FRUIT_SALAD = ITEMS.register("fruit_salad",
+            () -> new Item(new Item.Properties().food(ModFoods.FRUIT_SALAD)));
+
+    /*public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log" ,
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),
+            ModCreativeModeTab.YNOV_TAB);
+
+    public static final RegistryObject<Block> PEAR_WOOD = BLOCKS.register("pear_wood" ,
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F).sound(SoundType.WOOD)),
+            ModCreativeModeTab.YNOV_TAB);
+
+    public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks" ,
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = fromBlock(PEAR_TRAPDOOR);
+    public static final RegistryObject<Item> PEAR_LEAVE_BLOCK_ITEM = fromBlock(PEAR_LEAVES_BLOCK);
+    public static final RegistryObject<Item> PEAR_LOG_ITEM = fromBlock(PEAR_LOG);
+    public static final RegistryObject<Item> PEAR_WOOD_ITEM = fromBlock(PEAR_WOOD);
+    public static final RegistryObject<Item> PEAR_SAPLING_ITEM = fromBlock(PEAR_SAPLING);
+    public static final RegistryObject<Item> PEAR_PLANKS_ITEM = fromBlock(PEAR_PLANKS);
+    public static final RegistryObject<Item> PEAR_STAIRS_ITEM = fromBlock(PEAR_STAIRS);
+    public static final RegistryObject<Item> PEAR_SLAB_ITEM = fromBlock(PEAR_SLAB);
+    public static final RegistryObject<Block> PEAR_LEAVES_BLOCK = BLOCKS.register("pear_leaves_block" ,
+            () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 30;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+
+
+    public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling" ,
+            () -> new SaplingBlock(new PearTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),
+            ModCreativeModeTab.YNOV_TAB);
+
+
+    public static final RegistryObject<Block> PEAR_STAIRS = BLOCKS.register("pear_stairs" ,
+            () -> new StairBlock(() -> ModBlock.PEAR_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+
+
+    public static final RegistryObject<Block> PEAR_SLAB = BLOCKS.register("pear_slab" ,
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+
+    public static final RegistryObject<Block> PEAR_FENCE = BLOCKS.register("pear_fence" ,
+            () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+
+
+    public static final RegistryObject<Block> PEAR_FENCE_GATE = BLOCKS.register("pear_fence_gate" ,
+            () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+
+    public static final RegistryObject<Block> PEAR_BUTTON = BLOCKS.register("pear_button" ,
+            () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> PEAR_BUTTON_ITEM = fromBlock(PEAR_BUTTON);
+
+    public static final RegistryObject<Block> PEAR_PRESSURE_PLATE = BLOCKS.register("pear_pressure_plate" ,
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(0.5F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> PEAR_PRESSURE_PLATE_ITEM = fromBlock(PEAR_PRESSURE_PLATE);
+    public static final RegistryObject<Block> PEAR_DOOR = BLOCKS.register("pear_door" ,
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion()){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> PEAR_DOOR_ITEM = fromBlock(PEAR_DOOR);
+    public static final RegistryObject<Block> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor" ,
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion()){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+
+
+
+
+
+
+
+    public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log" ,
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F).sound(SoundType.WOOD)),
+            ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_LOG_ITEM = fromBlock(BANANA_LOG);
+    public static final RegistryObject<Block> BANANA_WOOD = BLOCKS.register("banana_wood" ,
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F).sound(SoundType.WOOD)),
+            ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_WOOD_ITEM = fromBlock(BANANA_WOOD);
+    public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks" ,
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_PLANKS_ITEM = fromBlock(BANANA_PLANKS);
+    public static final RegistryObject<Block> BANANA_LEAVES_BLOCK = BLOCKS.register("banana_leaves_block" ,
+            () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 30;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_LEAVES_BLOCK_ITEM = fromBlock(BANANA_LEAVES_BLOCK);
+
+    public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling" ,
+            () -> new SaplingBlock(new OakTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),
+            ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_SAPLING_ITEM = fromBlock(BANANA_SAPLING);
+
+    public static final RegistryObject<Block> BANANA_STAIRS = BLOCKS.register("banana_stairs" ,
+            () -> new StairBlock(() -> ModBlock.PEAR_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_STAIRS_ITEM = fromBlock(BANANA_STAIRS);
+
+    public static final RegistryObject<Block> BANANA_SLAB = BLOCKS.register("banana_slab" ,
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_SLAB_ITEM = fromBlock(BANANA_SLAB);
+
+    public static final RegistryObject<Block> BANANA_FENCE = BLOCKS.register("banana_fence" ,
+            () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_FENCE_ITEM = fromBlock(BANANA_FENCE);
+
+    public static final RegistryObject<Block> BANANA_FENCE_GATE = BLOCKS.register("banana_fence_gate" ,
+            () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_FENCE_GATE_ITEM = fromBlock(BANANA_FENCE_GATE);
+
+    public static final RegistryObject<Block> BANANA_BUTTON = BLOCKS.register("banana_button" ,
+            () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_BUTTON_ITEM = fromBlock(BANANA_BUTTON);
+
+    public static final RegistryObject<Block> BANANA_PRESSURE_PLATE = BLOCKS.register("banana_pressure_plate" ,
+            () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING,BlockBehaviour.Properties.of(Material.WOOD).noCollission().strength(0.5F).sound(SoundType.WOOD)){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_PRESSURE_PLATE_ITEM = fromBlock(BANANA_PRESSURE_PLATE);
+    public static final RegistryObject<Block> BANANA_DOOR = BLOCKS.register("banana_door" ,
+            () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion()){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_DOOR_ITEM = fromBlock(BANANA_DOOR);
+    public static final RegistryObject<Block> BANANA_TRAPDOOR = BLOCKS.register("banana_trapdoor" ,
+            () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).strength(3.0F).sound(SoundType.WOOD).noOcclusion()){
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 5;
+                }
+            },ModCreativeModeTab.YNOV_TAB);
+    public static final RegistryObject<Item> BANANA_TRAPDOOR_ITEM = fromBlock(BANANA_TRAPDOOR);*/
 
     public static final RegistryObject<EntityType<CompanionEntity>> THIEF = ENTITIES.register("thief", () -> EntityType.Builder.of(CompanionEntity::new, MobCategory.CREATURE)
             .sized(0.6f, 1.95f)
