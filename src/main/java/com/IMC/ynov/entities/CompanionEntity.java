@@ -12,21 +12,18 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
 public class CompanionEntity extends TamableAnimal implements OwnableEntity {
     private static final EntityDataAccessor<Boolean> BREAKING = SynchedEntityData.defineId(CompanionEntity.class, EntityDataSerializers.BOOLEAN);
-    private boolean stealing = false;
+    private boolean breaking = false;
 
     public CompanionEntity(EntityType<? extends CompanionEntity> type, Level worldIn) {
         super(type, worldIn);
@@ -35,7 +32,7 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new CompanionBlockGoal(this, 1.3));
+        this.goalSelector.addGoal(0, new CompanionBlockGoal(Blocks.COAL_ORE, this, 1.3));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
@@ -50,22 +47,15 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        stealing = tag.getBoolean("Stealing");
+        breaking = tag.getBoolean("Breaking");
     }
 
     @Override
     public boolean save(CompoundTag tag) {
-        tag.putBoolean("Stealing", stealing);
+        tag.putBoolean("Breaking", breaking);
         return super.save(tag);
     }
 
-    public boolean isStealing() {
-        return stealing;
-    }
-
-    public void setStealing(boolean stealing) {
-        this.stealing = stealing;
-    }
 
     //    @Override
 //    public Packet<?> getAddEntityPacket() {
@@ -75,7 +65,7 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
     public static AttributeSupplier.Builder prepareAttributes() {
         return LivingEntity.createLivingAttributes()
                 .add(Attributes.ATTACK_DAMAGE, 3.0)
-                .add(Attributes.MAX_HEALTH, 20.0)
+                .add(Attributes.MAX_HEALTH, 1.0)
                 .add(Attributes.FOLLOW_RANGE, 40.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.3);
     }
@@ -116,6 +106,7 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
             return super.mobInteract(pPlayer, pHand);
         }
     }
+
     public void setBreaking(boolean value) {
         this.entityData.set(BREAKING, value);
     }
