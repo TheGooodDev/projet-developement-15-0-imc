@@ -2,7 +2,7 @@ package com.IMC.ynov;
 
 
 import com.IMC.ynov.setup.Registration;
-import com.IMC.ynov.world.features.ModFeatures;
+
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
@@ -33,7 +33,7 @@ public class Mod
 
     public Mod() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModFeatures.register((eventBus));
+
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

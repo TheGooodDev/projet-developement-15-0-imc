@@ -19,7 +19,7 @@ import org.antlr.runtime.tree.Tree;
 
 public class ModConfiguredFeatures {
 
-    public static final ConfiguredFeature<TreeConfiguration, ?> PEARWOOD = register("pearwood", ModFeatures.PEAR_TREE.get().configured(
+    public static final ConfiguredFeature<TreeConfiguration, ?> PEARWOOD = register("pearwood", Registration.PEAR_TREE.get().configured(
             new TreeConfiguration.TreeConfigurationBuilder(
                     BlockStateProvider.simple(Registration.PEAR_LOG.get().defaultBlockState()),
                     new StraightTrunkPlacer(5, 1, 2),

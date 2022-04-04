@@ -1,14 +1,19 @@
 package com.IMC.ynov.setup;
 
 
+import com.IMC.ynov.Mod;
 import com.IMC.ynov.entities.CompanionEntity;
 import com.IMC.ynov.ModFoods;
+import com.IMC.ynov.world.features.tree.PearTreeFeature;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -17,6 +22,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.antlr.runtime.tree.Tree;
 
 import static com.IMC.ynov.CompanionMod.MODID;
 
@@ -76,6 +82,11 @@ public class Registration {
     public static final RegistryObject<Item> PEAR_FENCE_GATE_ITEM = fromBlock(PEAR_FENCE_GATE);
     public static final RegistryObject<Item> BANANA_FENCE_ITEM = fromBlock(BANANA_FENCE);
     public static final RegistryObject<Item> BANANA_FENCE_GATE_ITEM = fromBlock(BANANA_FENCE_GATE);
+
+    public static final DeferredRegister<Feature<?>> FEATURES
+            = DeferredRegister.create(ForgeRegistries.FEATURES, Mod.MOD_ID);
+    public static final RegistryObject<Feature<TreeConfiguration>> PEAR_TREE =
+            FEATURES.register("pear_tree", ()-> new PearTreeFeature(NoneFeatureConfiguration.CODEC));
 
     public static final RegistryObject<Item> PEAR = ITEMS.register("pear",
             () -> new Item(new Item.Properties().food(ModFoods.PEAR)));
