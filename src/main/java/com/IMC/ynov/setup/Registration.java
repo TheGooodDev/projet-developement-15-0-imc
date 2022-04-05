@@ -1,7 +1,7 @@
 package com.IMC.ynov.setup;
 
 
-import com.IMC.ynov.Mod;
+
 import com.IMC.ynov.entities.CompanionEntity;
 import com.IMC.ynov.ModFoods;
 import com.IMC.ynov.world.features.tree.PearTreeFeature;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.antlr.runtime.tree.Tree;
+
 
 import static com.IMC.ynov.CompanionMod.MODID;
 
@@ -31,7 +31,7 @@ public class Registration {
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
-    private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Mod.MOD_ID);
+    private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, MODID);
 
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -45,6 +45,12 @@ public class Registration {
 
     public static final RegistryObject<Feature<TreeConfiguration>> PEAR_TREE =
             FEATURES.register("pear_tree", ()-> new PearTreeFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<TreeConfiguration>> BANANA_TREE =
+            FEATURES.register("banana_tree", ()-> new PearTreeFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final RegistryObject<Feature<TreeConfiguration>> ORANGE_TREE =
+            FEATURES.register("orange_tree", ()-> new PearTreeFeature(NoneFeatureConfiguration.CODEC));
 
 
 
@@ -61,6 +67,7 @@ public class Registration {
     public static final RegistryObject<Item> MYSTERIOUS_ORE_END_ITEM = fromBlock(MYSTERIOUS_ORE_END);
     public static final RegistryObject<Block> MYSTERIOUS_ORE_DEEPSLATE = BLOCKS.register("mysterious_ore_deepslate", () -> new Block(ORE_PROPERTIES));
     public static final RegistryObject<Item> MYSTERIOUS_ORE_DEEPSLATE_ITEM = fromBlock(MYSTERIOUS_ORE_DEEPSLATE);
+
     public static final RegistryObject<Block> PEAR_LOG = BLOCKS.register("pear_log", () -> new Block(WOOD));
     public static final RegistryObject<Block> PEAR_WOOD = BLOCKS.register("pear_wood", () -> new Block(WOOD));
     public static final RegistryObject<Block> PEAR_PLANKS = BLOCKS.register("pear_planks", () -> new Block(WOOD));
@@ -74,6 +81,22 @@ public class Registration {
     public static final RegistryObject<Block> PEAR_FENCE = BLOCKS.register("pear_fence", () -> new Block(WOOD));
     public static final RegistryObject<Block> PEAR_FENCE_GATE = BLOCKS.register("pear_fence_gate", () -> new Block(WOOD));
     public static final RegistryObject<Block> PEAR_LEAVES_BLOCK = BLOCKS.register("pear_leaves_block", () -> new Block(WOOD));
+
+    public static final RegistryObject<Block> ORANGE_LOG = BLOCKS.register("orange_log", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_WOOD = BLOCKS.register("orange_wood", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_PLANKS = BLOCKS.register("orange_planks", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_DOOR = BLOCKS.register("orange_door", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_TRAPDOOR = BLOCKS.register("orange_trapdoor", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_PRESSURE_PLATE = BLOCKS.register("orange_pressure_plate", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_SLAB = BLOCKS.register("orange_slab", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_STAIRS = BLOCKS.register("orange_stairs", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_FENCE = BLOCKS.register("orange_fence", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_FENCE_GATE = BLOCKS.register("orange_fence_gate", () -> new Block(WOOD));
+    public static final RegistryObject<Block> ORANGE_LEAVES_BLOCK = BLOCKS.register("orange_leaves_block", () -> new Block(WOOD));
+
+
     public static final RegistryObject<Block> BANANA_LOG = BLOCKS.register("banana_log", () -> new Block(WOOD));
     public static final RegistryObject<Block> BANANA_WOOD = BLOCKS.register("banana_wood", () -> new Block(WOOD));
     public static final RegistryObject<Block> BANANA_PLANKS = BLOCKS.register("banana_planks", () -> new Block(WOOD));
@@ -87,10 +110,49 @@ public class Registration {
     public static final RegistryObject<Block> BANANA_FENCE = BLOCKS.register("banana_fence", () -> new Block(WOOD));
     public static final RegistryObject<Block> BANANA_FENCE_GATE = BLOCKS.register("banana_fence_gate", () -> new Block(WOOD));
     public static final RegistryObject<Block> BANANA_LEAVES_BLOCK = BLOCKS.register("banana_leaves_block", () -> new Block(WOOD));
+
     public static final RegistryObject<Item> PEAR_FENCE_ITEM = fromBlock(PEAR_FENCE);
     public static final RegistryObject<Item> PEAR_FENCE_GATE_ITEM = fromBlock(PEAR_FENCE_GATE);
+    public static final RegistryObject<Item> PEAR_BUTTON_ITEM = fromBlock(PEAR_BUTTON);
+    public static final RegistryObject<Item> PEAR_SLAB_ITEM = fromBlock(PEAR_SLAB);
+    public static final RegistryObject<Item> PEAR_STAIRS_ITEM = fromBlock(PEAR_STAIRS);
+    public static final RegistryObject<Item> PEAR_DOOR_ITEM = fromBlock(PEAR_DOOR);
+    public static final RegistryObject<Item> PEAR_TRAPDOOR_ITEM = fromBlock(PEAR_TRAPDOOR);
+    public static final RegistryObject<Item> PEAR_PLANKS_ITEM = fromBlock(PEAR_PLANKS);
+    public static final RegistryObject<Item> PEAR_LOG_ITEM = fromBlock(PEAR_LOG);
+    public static final RegistryObject<Item> PEAR_WOOD_ITEM = fromBlock(PEAR_WOOD);
+    public static final RegistryObject<Item> PEAR_PRESSURE_PLATE_ITEM = fromBlock(PEAR_PRESSURE_PLATE);
+    public static final RegistryObject<Item> PEAR_LEAVES_BLOCK_ITEM = fromBlock(PEAR_LEAVES_BLOCK);
+    public static final RegistryObject<Item> PEAR_SAPLING_ITEM = fromBlock(PEAR_SAPLING);
+
     public static final RegistryObject<Item> BANANA_FENCE_ITEM = fromBlock(BANANA_FENCE);
     public static final RegistryObject<Item> BANANA_FENCE_GATE_ITEM = fromBlock(BANANA_FENCE_GATE);
+    public static final RegistryObject<Item> BANANA_BUTTON_ITEM = fromBlock(BANANA_BUTTON);
+    public static final RegistryObject<Item> BANANA_SLAB_ITEM = fromBlock(BANANA_SLAB);
+    public static final RegistryObject<Item> BANANA_STAIRS_ITEM = fromBlock(BANANA_STAIRS);
+    public static final RegistryObject<Item> BANANA_DOOR_ITEM = fromBlock(BANANA_DOOR);
+    public static final RegistryObject<Item> BANANA_TRAPDOOR_ITEM = fromBlock(BANANA_TRAPDOOR);
+    public static final RegistryObject<Item> BANANA_PLANKS_ITEM = fromBlock(BANANA_PLANKS);
+    public static final RegistryObject<Item> BANANA_LOG_ITEM = fromBlock(BANANA_LOG);
+    public static final RegistryObject<Item> BANANA_WOOD_ITEM = fromBlock(BANANA_WOOD);
+    public static final RegistryObject<Item> BANANA_PRESSURE_PLATE_ITEM = fromBlock(BANANA_PRESSURE_PLATE);
+    public static final RegistryObject<Item> BANANA_LEAVES_BLOCK_ITEM = fromBlock(BANANA_LEAVES_BLOCK);
+    public static final RegistryObject<Item> BANANA_SAPLING_ITEM = fromBlock(BANANA_SAPLING);
+
+    public static final RegistryObject<Item> ORANGE_FENCE_ITEM = fromBlock(ORANGE_FENCE);
+    public static final RegistryObject<Item> ORANGE_FENCE_GATE_ITEM = fromBlock(ORANGE_FENCE_GATE);
+    public static final RegistryObject<Item> ORANGE_BUTTON_ITEM = fromBlock(ORANGE_BUTTON);
+    public static final RegistryObject<Item> ORANGE_SLAB_ITEM = fromBlock(ORANGE_SLAB);
+    public static final RegistryObject<Item> ORANGE_STAIRS_ITEM = fromBlock(ORANGE_STAIRS);
+    public static final RegistryObject<Item> ORANGE_DOOR_ITEM = fromBlock(ORANGE_DOOR);
+    public static final RegistryObject<Item> ORANGE_TRAPDOOR_ITEM = fromBlock(ORANGE_TRAPDOOR);
+    public static final RegistryObject<Item> ORANGE_PLANKS_ITEM = fromBlock(ORANGE_PLANKS);
+    public static final RegistryObject<Item> ORANGE_LOG_ITEM = fromBlock(ORANGE_LOG);
+    public static final RegistryObject<Item> ORANGE_WOOD_ITEM = fromBlock(ORANGE_WOOD);
+    public static final RegistryObject<Item> ORANGE_PRESSURE_PLATE_ITEM = fromBlock(ORANGE_PRESSURE_PLATE);
+    public static final RegistryObject<Item> ORANGE_LEAVES_BLOCK_ITEM = fromBlock(ORANGE_LEAVES_BLOCK);
+    public static final RegistryObject<Item> ORANGE_SAPLING_ITEM = fromBlock(ORANGE_SAPLING);
+
 
 
 

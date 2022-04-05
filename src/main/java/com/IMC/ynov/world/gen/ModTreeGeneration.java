@@ -21,10 +21,31 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class ModTreeGeneration {
+
+    public static  void generateTrees(final BiomeLoadingEvent event){
+
+
+    }
+
     public static PlacedFeature PEAR_TREE_PLACED = PlacementUtils.register("pear_tree_placement",
                 ModConfiguredFeatures.PEARWOOD.placed(RarityFilter.onAverageOnceEvery(12),
                         InSquarePlacement.spread(),
-                        //PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                         PlacementUtils.HEIGHTMAP_TOP_SOLID,
                         BiomeFilter.biome()));
+
+    public static PlacedFeature BANANA_TREE_PLACED = PlacementUtils.register("banana_tree_placement",
+            ModConfiguredFeatures.BANANAWOOD.placed(RarityFilter.onAverageOnceEvery(12),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_TOP_SOLID,
+                    BiomeFilter.biome()));
+
+    public static PlacedFeature ORANGE_TREE_PLACED = PlacementUtils.register("orange_tree_placement",
+            ModConfiguredFeatures.ORANGEWOOD.placed(RarityFilter.onAverageOnceEvery(12),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP_TOP_SOLID,
+                    BiomeFilter.biome()));
     }
+
+
+
+

@@ -1,6 +1,5 @@
 package com.IMC.ynov.world.features.tree;
 
-
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -13,13 +12,11 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.Material;
 
-
 import java.util.Random;
 
-public class PearTreeFeature  extends Feature<TreeConfiguration> {
+public class BananaTreeFeature extends Feature<TreeConfiguration>{
 
-
-    public PearTreeFeature(Codec codec) {
+    public BananaTreeFeature(Codec codec) {
         super(codec);
     }
 
@@ -74,5 +71,4 @@ public class PearTreeFeature  extends Feature<TreeConfiguration> {
 
         return true;
     }
-
 }

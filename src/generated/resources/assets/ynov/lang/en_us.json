@@ -5,5 +5,9 @@
   "block.ynov.mysterious_ore_overworld": "Mysterious ore",
   "entity.ynov.thief": "Companion",
   "item.ynov.thief": "Companion egg",
-  "itemGroup.ynov": "Tutorial"
+  "itemGroup.ynov": "Tutorial",
+  "block.ynov.banana_fence": "Banana Fence",
+  "block.ynov.banana_fence_gate": "Banana Fence Gate",
+  "block.ynov.banana_button": "Banana Button",
+  "block.ynov.banana_door": "Banana Door"
 }
