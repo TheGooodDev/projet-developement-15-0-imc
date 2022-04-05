@@ -21,7 +21,6 @@ import java.util.Random;
 
 public class PearTreeFeature  extends Feature<TreeConfiguration> {
 
-    private static final ResourceLocation PEAR_TREE = new ResourceLocation(Mod.MOD_ID, "pear_tree");
 
     public PearTreeFeature(Codec codec) {
         super(codec);
