@@ -1,12 +1,14 @@
 package com.IMC.ynov.entities;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.protocol.game.ClientboundHorseScreenOpenPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -18,12 +20,58 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
 
-public class CompanionEntity extends TamableAnimal implements OwnableEntity {
+public class CompanionEntity extends TamableAnimal implements OwnableEntity, ContainerListener {
     private static final EntityDataAccessor<Boolean> BREAKING = SynchedEntityData.defineId(CompanionEntity.class, EntityDataSerializers.BOOLEAN);
     private boolean breaking = false;
+
+
+    //------------------------------------------------------
+    protected SimpleContainer inventory;
+    private LazyOptional<InvWrapper> itemHandler;
+
+    protected int getInventorySize() {return 12;}
+
+    protected void createInventory() {
+        SimpleContainer simpleContainer = this.inventory;
+        this.inventory = new SimpleContainer(this.getInventorySize());
+        if (simpleContainer != null) {
+            simpleContainer.removeListener(this);
+            int i = Math.min(simpleContainer.getContainerSize(), this.inventory.getContainerSize());
+
+            for (int j = 0; j < i; j++) {
+                ItemStack itemStack = simpleContainer.getItem(j);
+                if (!itemStack.isEmpty()) {
+                    this.inventory.setItem(j, itemStack.copy());
+                }
+            }
+        }
+
+        this.inventory.addListener(this);
+        this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this.inventory));
+    }
+
+
+
+    public void openInventory(ServerPlayer pPlayerEntity) {
+
+        if (pPlayerEntity.containerMenu != pPlayerEntity.inventoryMenu) {
+            pPlayerEntity.closeContainer();
+        }
+
+        pPlayerEntity.nextContainerCounter();
+        pPlayerEntity.connection.send(new ClientboundHorseScreenOpenPacket(pPlayerEntity.containerCounter, this.inventory.getContainerSize(), this.getId()));
+        pPlayerEntity.containerMenu = new CompanionInventoryMenu(pPlayerEntity.containerCounter, pPlayerEntity.getInventory(), this.inventory, this);
+        pPlayerEntity.initMenu(pPlayerEntity.containerMenu);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.player.PlayerContainerEvent.Open(pPlayerEntity, pPlayerEntity.containerMenu));
+    }
+
+    public int getInventoryColumns() { return 4;}
+    //------------------------------------------------------
 
     public CompanionEntity(EntityType<? extends CompanionEntity> type, Level worldIn) {
         super(type, worldIn);
@@ -48,11 +96,35 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
     public void load(CompoundTag tag) {
         super.load(tag);
         breaking = tag.getBoolean("Breaking");
+        this.createInventory();
+
+        ListTag listtag = tag.getList("Items", 10);
+
+        for (int i = 0; i < listtag.size(); i++) {
+            CompoundTag compoundTag = listtag.getCompound(i);
+            int j = compoundTag.getByte("Slot") & 255;
+            if (j >= 0 && j < this.inventory.getContainerSize()) {
+                this.inventory.setItem(j, ItemStack.of(compoundTag));
+            }
+        }
     }
 
     @Override
     public boolean save(CompoundTag tag) {
         tag.putBoolean("Breaking", breaking);
+
+        ListTag listtag = new ListTag();
+        for (int i = 0; i < this.inventory.getContainerSize(); i++) {
+            ItemStack itemStack = this.inventory.getItem(i);
+            if(!itemStack.isEmpty()) {
+                CompoundTag compoundTag = new CompoundTag();
+                compoundTag.putByte("Slot", (byte)i);
+                itemStack.save(compoundTag);
+                listtag.add(compoundTag);
+            }
+        }
+
+        tag.put("Items", listtag);
         return super.save(tag);
     }
 
@@ -85,6 +157,9 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
                     this.heal((float)item.getFoodProperties().getNutrition());
                     this.gameEvent(GameEvent.MOB_INTERACT, this.eyeBlockPosition());
                     return InteractionResult.SUCCESS;
+                } else  if (pPlayer.isSecondaryUseActive()) {
+                    openInventory((ServerPlayer) pPlayer);
+                    return InteractionResult.sidedSuccess(this.level.isClientSide);
                 }
             } else if (itemstack.is(Items.DIAMOND) ) {
                 if (!pPlayer.getAbilities().instabuild) {
@@ -109,5 +184,10 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
 
     public void setBreaking(boolean value) {
         this.entityData.set(BREAKING, value);
+    }
+
+    @Override
+    public void containerChanged(Container pInvBasic) {
+
     }
 }
