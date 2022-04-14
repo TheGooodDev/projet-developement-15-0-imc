@@ -21,6 +21,6 @@ public class ClientSetup {
     }
     @SubscribeEvent
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(Registration.THIEF.get(), CompanionRenderer::new);
+        event.registerEntityRenderer(Registration.COMPANION.get(), CompanionRenderer::new);
     }
 }

@@ -17,10 +17,6 @@ public class ModItemModels extends ItemModelProvider {
     protected void registerModels() {
         ResourceLocation rl = new ResourceLocation(CompanionMod.MODID, "name");
 
-        withExistingParent(Registration.MYSTERIOUS_ORE_OVERWORLD_ITEM.get().getRegistryName().getPath(), modLoc("block/mysterious_ore_overworld"));
-        withExistingParent(Registration.MYSTERIOUS_ORE_NETHER_ITEM.get().getRegistryName().getPath(), modLoc("block/mysterious_ore_nether"));
-        withExistingParent(Registration.MYSTERIOUS_ORE_END_ITEM.get().getRegistryName().getPath(), modLoc("block/mysterious_ore_end"));
-        withExistingParent(Registration.MYSTERIOUS_ORE_DEEPSLATE_ITEM.get().getRegistryName().getPath(), modLoc("block/mysterious_ore_deepslate"));
         withExistingParent(Registration.BANANA_BUTTON.get().getRegistryName().getPath(), modLoc("block/banana_button"));
         withExistingParent(Registration.BANANA_DOOR.get().getRegistryName().getPath(), modLoc("block/banana_door"));
         withExistingParent(Registration.BANANA_FENCE.get().getRegistryName().getPath(), modLoc("block/banana_fence"));
