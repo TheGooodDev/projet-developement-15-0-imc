@@ -32,4 +32,14 @@ public class CompanionMod {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modbus.addListener(ClientSetup::init));
 
     }
+
+    private void clientSetup(final FMLClientSetupEvent event){
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_SAPLING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_LEAVES_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(Registration.BANANA_SAPLING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_DOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.PEAR_TRAPDOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.BANANA_DOOR.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(Registration.BANANA_TRAPDOOR.get(), RenderType.translucent());
+    }
 }
