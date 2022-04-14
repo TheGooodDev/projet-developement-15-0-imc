@@ -22,7 +22,7 @@ And Companion 🐶👷<br>
 A list of technologies used within the project:
 * [Minecraft Forge](https://files.minecraftforge.net/net/minecraftforge/forge/): Version 39.0.20
 * [Minecraft](https://www.minecraft.net/fr-fr): Version 1.18.1
-* Java
+* Java: Version 17
 ## Installation
 ***
 How to modify.
