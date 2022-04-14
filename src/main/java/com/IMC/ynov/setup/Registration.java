@@ -1,10 +1,8 @@
 package com.IMC.ynov.setup;
 
-import com.IMC.ynov.CompanionMod;
 import com.IMC.ynov.entities.CompanionEntity;
-import com.IMC.ynov.entities.CompanionInventoryMenu;
+import com.IMC.ynov.container.CompanionMenu;
 import net.minecraft.client.Minecraft;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -15,7 +13,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -60,12 +57,12 @@ public class Registration {
             .build("thief"));
     public static final RegistryObject<Item> THIEF_EGG = ITEMS.register("thief", () -> new ForgeSpawnEggItem(THIEF, 0xff0000, 0x00ff00, ITEM_PROPERTIES));
 
-    public static final RegistryObject<MenuType<CompanionInventoryMenu>> COMPANION_INVENTORY = CONTAINERS.register("companion_inventory",
+    public static final RegistryObject<MenuType<CompanionMenu>> COMPANION_INVENTORY = CONTAINERS.register("companion_inventory",
             () -> IForgeMenuType.create((windowId, inv, data) -> {
                 Entity entity = Minecraft.getInstance().level.getEntity(data.readInt());
 
                 if (entity instanceof CompanionEntity companionEntity) {
-                    return new CompanionInventoryMenu(windowId, inv, companionEntity);
+                    return new CompanionMenu(windowId, inv, companionEntity);
                 } else {
                     throw new IllegalStateException("Tried to open a miner minion inventory with a non miner minion entity!");
                 }

@@ -1,5 +1,7 @@
 package com.IMC.ynov.entities;
 
+import com.IMC.ynov.container.CompanionInventory;
+import com.IMC.ynov.container.CompanionMenu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.game.ClientboundHorseScreenOpenPacket;
@@ -21,9 +23,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.network.NetworkHooks;
+import org.openjdk.nashorn.internal.objects.annotations.Getter;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class CompanionEntity extends TamableAnimal implements OwnableEntity, ContainerListener {
     private static final EntityDataAccessor<Boolean> BREAKING = SynchedEntityData.defineId(CompanionEntity.class, EntityDataSerializers.BOOLEAN);
@@ -31,51 +37,29 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
 
 
     //------------------------------------------------------
-    protected SimpleContainer inventory;
-    private LazyOptional<InvWrapper> itemHandler;
+    private static final UUID ownerID = null;
 
-    protected int getInventorySize() {return 12;}
+    protected final ItemStackHandler inventory;
 
-    protected void createInventory() {
-        this.inventory = new SimpleContainer(getInventorySize());
-        SimpleContainer simpleContainer = this.inventory;
-        if (simpleContainer != null) {
-            simpleContainer.removeListener(this);
-            int i = Math.min(simpleContainer.getContainerSize(), this.inventory.getContainerSize());
+    protected boolean isFull = false;
 
-            for (int j = 0; j < i; j++) {
-                ItemStack itemStack = simpleContainer.getItem(j);
-                if (!itemStack.isEmpty()) {
-                    this.inventory.setItem(j, itemStack.copy());
-                }
-            }
+    private void openInventory(Player pPlayer) {
+        if (pPlayer instanceof ServerPlayer serverPlayer) {
+            NetworkHooks.openGui(serverPlayer, new SimpleMenuProvider(((pContainerId, pInventory, pPlayer1) ->
+                    new CompanionMenu(pContainerId, pPlayer1.getInventory(), this)), getCustomName()), buf -> buf.writeInt(getId()));
         }
-
-        this.inventory.addListener(this);
-        this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new net.minecraftforge.items.wrapper.InvWrapper(this.inventory));
     }
 
-
-
-    public void openInventory(ServerPlayer pPlayerEntity) {
-
-        if (pPlayerEntity.containerMenu != pPlayerEntity.inventoryMenu) {
-            pPlayerEntity.closeContainer();
-        }
-
-        pPlayerEntity.nextContainerCounter();
-        pPlayerEntity.connection.send(new ClientboundHorseScreenOpenPacket(pPlayerEntity.containerCounter, this.inventory.getContainerSize(), this.getId()));
-        pPlayerEntity.containerMenu = new CompanionInventoryMenu(pPlayerEntity.containerCounter, pPlayerEntity.getInventory(), this);
-        pPlayerEntity.initMenu(pPlayerEntity.containerMenu);
-        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.player.PlayerContainerEvent.Open(pPlayerEntity, pPlayerEntity.containerMenu));
+    public ItemStackHandler getInventory() {
+        return inventory;
     }
 
-    public int getInventoryColumns() { return 4;}
     //------------------------------------------------------
 
     public CompanionEntity(EntityType<? extends CompanionEntity> type, Level worldIn) {
         super(type, worldIn);
         this.setTame(false);
+        inventory = new CompanionInventory(15);
     }
 
     @Override
@@ -96,35 +80,11 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
     public void load(CompoundTag tag) {
         super.load(tag);
         breaking = tag.getBoolean("Breaking");
-        this.createInventory();
-
-        ListTag listtag = tag.getList("Items", 10);
-
-        for (int i = 0; i < listtag.size(); i++) {
-            CompoundTag compoundTag = listtag.getCompound(i);
-            int j = compoundTag.getByte("Slot") & 255;
-            if (j >= 0 && j < this.inventory.getContainerSize()) {
-                this.inventory.setItem(j, ItemStack.of(compoundTag));
-            }
-        }
     }
 
     @Override
     public boolean save(CompoundTag tag) {
         tag.putBoolean("Breaking", breaking);
-
-        ListTag listtag = new ListTag();
-        for (int i = 0; i < this.inventory.getContainerSize(); i++) {
-            ItemStack itemStack = this.inventory.getItem(i);
-            if(!itemStack.isEmpty()) {
-                CompoundTag compoundTag = new CompoundTag();
-                compoundTag.putByte("Slot", (byte)i);
-                itemStack.save(compoundTag);
-                listtag.add(compoundTag);
-            }
-        }
-
-        tag.put("Items", listtag);
         return super.save(tag);
     }
 
@@ -158,7 +118,7 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
                     this.gameEvent(GameEvent.MOB_INTERACT, this.eyeBlockPosition());
                     return InteractionResult.SUCCESS;
                 } else  if (pPlayer.isSecondaryUseActive()) {
-                    openInventory((ServerPlayer) pPlayer);
+                    openInventory(pPlayer);
                     return InteractionResult.sidedSuccess(this.level.isClientSide);
                 }
             } else if (itemstack.is(Items.DIAMOND) ) {

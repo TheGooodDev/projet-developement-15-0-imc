@@ -1,5 +1,6 @@
-package com.IMC.ynov.entities;
+package com.IMC.ynov.container;
 
+import com.IMC.ynov.entities.CompanionEntity;
 import com.IMC.ynov.setup.Registration;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -9,43 +10,54 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.NotNull;
 
-public class CompanionInventoryMenu extends AbstractContainerMenu {
-    private Container companionContainer;
-    private CompanionEntity companion;
-    private IItemHandler inventory;
+public class CompanionMenu extends AbstractContainerMenu {
 
-    public CompanionInventoryMenu(int pContainerId, Inventory playerInventory, CompanionEntity companion) {
-        super(Registration.COMPANION_INVENTORY.get(), pContainerId );
+    private final InvWrapper playerInvWrapper;
+    private final ItemStackHandler companionInventory;
+    private  final CompanionEntity companion;
+
+    public CompanionMenu(int pContainerId, Inventory inventory, CompanionEntity companion) {
+        super(Registration.COMPANION_INVENTORY.get(), pContainerId);
+        this.playerInvWrapper = new InvWrapper(inventory);
+        this.companionInventory = companion.getInventory();
         this.companion = companion;
-        this.companionContainer = companion.inventory;
-        this.inventory = new InvWrapper(playerInventory);
 
-        int i = 3;
-        int j = -18;
-        companionContainer.startOpen((Player) inventory);
+        setCompanionSlots();
+        setPlayerSlots();
+    }
+
+    private void setCompanionSlots() {
+        int inventoryX = 44;
+        int inventoryY = 20;
+        for (int i = 4; i < companionInventory.getSlots(); i++) {
+            addSlot(new CompanionInventorySlot(this.companionInventory, i, inventoryX, inventoryY, companion));
+        }
+
+    }
+
+    private void setPlayerSlots() {
+        int i = 0;
+
+        for (int j = 0; j < 9; j++) {
+            addSlot(new SlotItemHandler(this.playerInvWrapper, i++, 8 + 18 * j, 140));
+        }
+
         for (int k = 0; k < 3; k++) {
-            for (int l = 0; l < companion.getInventoryColumns(); l++) {
-                this.addSlot(new Slot(companionContainer, 2 + l + k * companion.getInventoryColumns(), 80 + l * 18, 18 + k * 18));
+            for (int l = 0; l < 9; l++) {
+                addSlot(new SlotItemHandler(this.playerInvWrapper, i++, 8 + 18 * l, 82 + 18 * k));
             }
-        }
-
-        for(int i1 = 0; i1 < 3; ++i1) {
-            for(int k1 = 0; k1 < 9; ++k1) {
-                this.addSlot(new Slot((Container) inventory, k1 + i1 * 9 + 9, 8 + k1 * 18, 102 + i1 * 18 + -18));
-            }
-        }
-        for(int j1 = 0; j1 < 9; ++j1) {
-            this.addSlot(new Slot((Container) inventory, j1, 8 + j1 * 18, 142));
         }
     }
 
     public boolean stillValid(@NotNull Player pPlayer) {
         return this.companion.isAlive() && this.companion.distanceTo(pPlayer) < 8.0F;
     }
-
+/*
     public @NotNull ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(pIndex);
@@ -97,5 +109,5 @@ public class CompanionInventoryMenu extends AbstractContainerMenu {
         super.removed(pPlayer);
         this.companionContainer.stopOpen(pPlayer);
     }
-
+*/
 }
