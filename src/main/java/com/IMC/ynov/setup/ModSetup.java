@@ -13,7 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 @Mod.EventBusSubscriber(modid = CompanionMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModSetup {
 
-    public static final String TAB_NAME = "ynov";
+    public static final String TAB_NAME = "Companion Mod";
 
     public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(TAB_NAME) {
         @Override
@@ -30,7 +30,7 @@ public class ModSetup {
 
     @SubscribeEvent
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
-        event.put(Registration.THIEF.get(), CompanionEntity.prepareAttributes().build());
+        event.put(Registration.COMPANION.get(), CompanionEntity.prepareAttributes().build());
     }
 
 }

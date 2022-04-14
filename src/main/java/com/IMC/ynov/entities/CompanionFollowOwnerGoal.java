@@ -97,7 +97,6 @@ public class CompanionFollowOwnerGoal extends Goal {
      * Keep ticking a continuous task that has already been started
      */
     public void tick() {
-        System.out.println(this.tamable.getOwner().getName());
         this.tamable.getLookControl().setLookAt(this.owner, 10.0F, (float)this.tamable.getMaxHeadXRot());
         if (--this.timeToRecalcPath <= 0) {
             this.timeToRecalcPath = this.adjustedTickDelay(10);

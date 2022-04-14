@@ -1,9 +1,5 @@
 {
-  "block.ynov.mysterious_ore_deepslate": "Mysterious ore",
-  "block.ynov.mysterious_ore_end": "Mysterious ore",
-  "block.ynov.mysterious_ore_nether": "Mysterious ore",
-  "block.ynov.mysterious_ore_overworld": "Mysterious ore",
-  "entity.ynov.thief": "Companion",
-  "item.ynov.thief": "Companion egg",
-  "itemGroup.ynov": "Tutorial"
+  "entity.ynov.companion": "Companion",
+  "item.ynov.companion": "Companion egg",
+  "itemGroup.Companion Mod": "Companion"
 }

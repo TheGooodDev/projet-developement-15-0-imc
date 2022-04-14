@@ -16,16 +16,6 @@ public class ModItemTags extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(Tags.Items.ORES)
-                .add(Registration.MYSTERIOUS_ORE_OVERWORLD_ITEM.get())
-                .add(Registration.MYSTERIOUS_ORE_NETHER_ITEM.get())
-                .add(Registration.MYSTERIOUS_ORE_END_ITEM.get())
-                .add(Registration.MYSTERIOUS_ORE_DEEPSLATE_ITEM.get());
-//        tag(Registration.MYSTERIOUS_ORE_ITEM)
-//                .add(Registration.MYSTERIOUS_ORE_OVERWORLD_ITEM.get())
-//                .add(Registration.MYSTERIOUS_ORE_NETHER_ITEM.get())
-//                .add(Registration.MYSTERIOUS_ORE_END_ITEM.get())
-//                .add(Registration.MYSTERIOUS_ORE_DEEPSLATE_ITEM.get());
     }
 
     @Override

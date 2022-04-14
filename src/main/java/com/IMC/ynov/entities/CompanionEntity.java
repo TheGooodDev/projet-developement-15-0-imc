@@ -19,6 +19,13 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.gameevent.GameEvent;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
@@ -26,9 +33,11 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
     private static final EntityDataAccessor<Boolean> BREAKING = SynchedEntityData.defineId(CompanionEntity.class, EntityDataSerializers.BOOLEAN);
     private boolean breaking = false;
 
+
     public CompanionEntity(EntityType<? extends CompanionEntity> type, Level worldIn) {
         super(type, worldIn);
         this.setTame(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_PICKAXE));
     }
 
     @Override
@@ -112,4 +121,6 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity {
     public void setBreaking(boolean value) {
         this.entityData.set(BREAKING, value);
     }
+
+
 }

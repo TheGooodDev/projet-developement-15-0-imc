@@ -27,13 +27,13 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CompanionBlockGoal extends Goal {
-   private boolean passed = true;
    private int breakTicks = 0;
-   private int requiredBreakTicks = 10* 15;
+   private int requiredBreakTicks = 10* 5;
 
-   private PathfinderMob mob;
+   private CompanionEntity mob;
    public double speedModifier;
    protected BlockPos blockPos = BlockPos.ZERO;
+   protected BlockPos blockmove = BlockPos.ZERO;
 
 
    public CompanionBlockGoal(CompanionEntity mob, double pSpeedModifier) {
@@ -42,12 +42,8 @@ public class CompanionBlockGoal extends Goal {
 
    }
 
-   protected int nextStartTick(PathfinderMob pCreature) {
-      return reducedTickDelay(200 + pCreature.getRandom().nextInt(200));
-   }
-
    public boolean canUse() {
-      return findClosestBlock(10,5);
+      return findClosestBlock(6,5);
    }
 
    @Override
@@ -59,12 +55,15 @@ public class CompanionBlockGoal extends Goal {
       this.moveMobToBlock();
    }
 
-
-
    private void reset() {
       this.blockPos = BlockPos.ZERO;
-      this.passed = true;
-      this.breakTicks = 0;
+      this.blockmove = BlockPos.ZERO;
+
+   }
+
+   public void stop() {
+      this.mob.level.destroyBlockProgress(this.mob.getId(), this.blockPos, -1);
+      reset();
    }
 
 
@@ -77,24 +76,24 @@ public class CompanionBlockGoal extends Goal {
                   for(int j1 = i1 < l && i1 > -l ? l : 0; j1 <= l; j1 = j1 > 0 ? -j1 : 1 - j1) {
                      blockpos$mutableblockpos.setWithOffset(blockpos, i1, k - 1, j1);
                      if (this.mob.isWithinRestriction(blockpos$mutableblockpos) && this.isValidTarget(this.mob.level, blockpos$mutableblockpos)) {
-                        this.blockPos = blockpos$mutableblockpos;
-                        return true;
+                        if(this.blockPos == BlockPos.ZERO) {
+                           this.blockPos = blockpos$mutableblockpos;
+                           return true;
+                        }
                      }
                   }
                }
             }
          }
-
          return false;
    }
+
+
 
    /**
     * Reset the task's internal state. Called when this task is interrupted by another one
     */
-   public void stop() {
-      this.mob.level.destroyBlockProgress(this.mob.getId(), this.blockPos, -1);
-      reset();
-   }
+
 
 
    public int getMiningDuration() {
@@ -104,22 +103,28 @@ public class CompanionBlockGoal extends Goal {
 
 @Override
    public void tick() {
-
       if(reached(this.blockPos)){
-         this.mob.level.destroyBlock(this.blockPos, true);
+         this.mob.getLookControl().setLookAt(this.blockPos.getX(),this.blockPos.getY(),this.blockPos.getZ());
+         this.breakTicks++;
+
+         if (this.breakTicks >= getMiningDuration()) {
+            //finish
+            if (mob.level instanceof ServerLevel level) {
+               //Get Block drops
+               List<ItemStack> drops = Block.getDrops(mob.level.getBlockState(blockPos), level, this.blockPos, null, this.mob, new ItemStack(Items.NETHERITE_PICKAXE));
+               AtomicBoolean hasAddedItem = new AtomicBoolean(false);
+            }
+            this.mob.level.destroyBlock(this.blockPos, true);
+            this.blockPos = BlockPos.ZERO;
+            this.blockmove = BlockPos.ZERO;
+            this.breakTicks = 0;
+         } else {
+            float breakProgression = ((Integer) this.breakTicks).floatValue() / ((Integer) getMiningDuration()).floatValue() * 10F;
+            this.mob.level.destroyBlockProgress(this.mob.getId(), this.blockPos, Math.min(10, Math.round(breakProgression - 1)));
+         }
+
       }
-//         if (this.breakTicks >= getMiningDuration()) {
-//            //finish
-//            if (mob.level instanceof ServerLevel level) {
-//               //Get Block drops
-//               List<ItemStack> drops = Block.getDrops(mob.level.getBlockState(blockPos), level, this.blockPos, null, this.mob, new ItemStack(Items.NETHERITE_PICKAXE));
-//               AtomicBoolean hasAddedItem = new AtomicBoolean(false);
-//            }
-//            this.mob.level.destroyBlock(this.blockPos, true);
-//         } else {
-//            float breakProgression = ((Integer) this.breakTicks).floatValue() / ((Integer) getMiningDuration()).floatValue() * 10F;
-//            this.mob.level.destroyBlockProgress(this.mob.getId(), this.blockPos, Math.min(10, Math.round(breakProgression - 1)));
-//         }
+
    }
 
 
@@ -130,26 +135,16 @@ public class CompanionBlockGoal extends Goal {
 
 
    protected void moveMobToBlock() {
-      if(!(blockPos == BlockPos.ZERO)){
-         this.mob.getNavigation().moveTo((double)((float)this.blockPos.getX()), (double)(this.blockPos.getY()), (double)((float)this.blockPos.getZ()), this.speedModifier);
+      if(!(blockmove == BlockPos.ZERO)){
+         this.mob.getNavigation().moveTo((double)((float)this.blockmove.getX()), (double)(this.blockmove.getY()-1), (double)((float)this.blockmove.getZ()), this.speedModifier);
       }
    }
 
    protected boolean reached(BlockPos pPos){
-//      Path path = this.mob.getNavigation().createPath(pPos, 1);
-//      if (path == null) {
-//         return false;
-//      } else {
-//         if (path.getNodeCount() < 3) {
-//            return true;
-//         }
-//      }
-//      return false;
-
       double i = pPos.getX() - this.mob.getX();
       double l = pPos.getY() - this.mob.getY();
       double j = pPos.getZ() - this.mob.getZ();
-      if((double)(i * i  + j * j)<= 2.25D && ( l >= -1.5D && l <= 4)){
+      if((double) i * i  <= 4D && j * j <= 4D && ( l >= -1.5D && l <= 3.5D)){
          return true;
       }
       return false;
@@ -158,6 +153,35 @@ public class CompanionBlockGoal extends Goal {
    /**
     * Return true to set given position as destination
     */
+
+   protected boolean FindClosestMove(BlockPos pPos) {
+      int i = 2;
+      int j = 2;
+      BlockPos blockpos = pPos;
+      BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+      for(int k = 0; k <= j; k = k > 0 ? -k : 1 - k) {
+         for(int l = 0; l < i; ++l) {
+            for(int i1 = 0; i1 <= l; i1 = i1 > 0 ? -i1 : 1 - i1) {
+               for(int j1 = i1 < l && i1 > -l ? l : 0; j1 <= l; j1 = j1 > 0 ? -j1 : 1 - j1) {
+                  blockpos$mutableblockpos.setWithOffset(blockpos, i1, k-1 , j1);
+                  BlockState blockstate = this.mob.level.getBlockState(blockpos$mutableblockpos);
+                  BlockState blockstateA = this.mob.level.getBlockState(blockpos$mutableblockpos.above());
+                  BlockState blockstateB = this.mob.level.getBlockState(blockpos$mutableblockpos.below());
+                  if (blockstate.isAir() && blockstateA.isAir() && !blockstateB.isAir()) {
+                     double x = pPos.getX() - blockpos$mutableblockpos.getX();
+                     double y = pPos.getY() - blockpos$mutableblockpos.getY();
+                     double z = pPos.getZ() - blockpos$mutableblockpos.getZ();
+                     if((double) x * x  <= 3D && z * z <= 3D && ( y >= -1.5D && y <= 3.5D)){
+                        this.blockmove = blockpos$mutableblockpos;
+                        return true;
+                     }
+                  }
+               }
+            }
+         }
+      }
+      return false;
+   }
    protected boolean isValidTarget(LevelReader pLevel, BlockPos pPos) {
       BlockState blockstate = pLevel.getBlockState(pPos);
       if( blockstate.is(Tags.Blocks.ORES)) {
@@ -165,28 +189,11 @@ public class CompanionBlockGoal extends Goal {
          BlockState blockstateB = pLevel.getBlockState(pPos.below());
          BlockState blockstateE = pLevel.getBlockState(pPos.east());
          BlockState blockstateW = pLevel.getBlockState(pPos.west());
-         BlockState blockstateN = pLevel.getBlockState(pPos.west());
-         BlockState blockstateS = pLevel.getBlockState(pPos.west());
+         BlockState blockstateN = pLevel.getBlockState(pPos.north());
+         BlockState blockstateS = pLevel.getBlockState(pPos.south());
 
          if (blockstateA.isAir() || blockstateB.isAir() || blockstateE.isAir() || blockstateW.isAir() || blockstateN.isAir() || blockstateS.isAir() ){
-//            Path path = this.mob.getNavigation().createPath(pPos, 3);
-//            if (path == null) {
-//               return false;
-//            } else {
-//               Node node = path.getEndNode();
-//               if (node == null) {
-//                  return false;
-//               } else {
-//
-//                  return false;
-//               }
-//            }
-
-            double i = pPos.getX() - this.mob.getX();
-            double l = pPos.getY() - this.mob.getY();
-            double j = pPos.getZ() - this.mob.getZ();
-            System.out.println("x: "+i+" y: "+l+" z: "+j+" x + z : "+i * i  + j * j);
-            if((double)(i * i  + j * j)<= 10D && ( l >= -1.5D && l <= 4)){
+            if(FindClosestMove(pPos)){
                return true;
             }
          }
