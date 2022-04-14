@@ -1,7 +1,11 @@
 package com.IMC.ynov.setup;
 
+import com.IMC.ynov.CompanionMod;
 import com.IMC.ynov.entities.CompanionEntity;
 import com.IMC.ynov.entities.CompanionInventoryMenu;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.inventory.MenuType;
@@ -11,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -55,7 +60,17 @@ public class Registration {
             .build("thief"));
     public static final RegistryObject<Item> THIEF_EGG = ITEMS.register("thief", () -> new ForgeSpawnEggItem(THIEF, 0xff0000, 0x00ff00, ITEM_PROPERTIES));
 
-    public static final RegistryObject<MenuType<CompanionInventoryMenu>> COMPANION_INVENTORY = CONTAINERS.register("companion_inventory", () -> IForgeMenuType.create((windowId, inv, data) -> new CompanionInventoryMenu()));
+    public static final RegistryObject<MenuType<CompanionInventoryMenu>> COMPANION_INVENTORY = CONTAINERS.register("companion_inventory",
+            () -> IForgeMenuType.create((windowId, inv, data) -> {
+                Entity entity = Minecraft.getInstance().level.getEntity(data.readInt());
+
+                if (entity instanceof CompanionEntity companionEntity) {
+                    return new CompanionInventoryMenu(windowId, inv, companionEntity);
+                } else {
+                    throw new IllegalStateException("Tried to open a miner minion inventory with a non miner minion entity!");
+                }
+
+    }));
 
     public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES));

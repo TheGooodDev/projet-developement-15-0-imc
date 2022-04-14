@@ -17,10 +17,10 @@ public class CompanionInventoryMenu extends AbstractContainerMenu {
     private CompanionEntity companion;
     private IItemHandler inventory;
 
-    public CompanionInventoryMenu(int pContainerId, Inventory playerInventory, Container companionContainer, CompanionEntity companion) {
+    public CompanionInventoryMenu(int pContainerId, Inventory playerInventory, CompanionEntity companion) {
         super(Registration.COMPANION_INVENTORY.get(), pContainerId );
-        this.companionContainer = companionContainer;
         this.companion = companion;
+        this.companionContainer = companion.inventory;
         this.inventory = new InvWrapper(playerInventory);
 
         int i = 3;

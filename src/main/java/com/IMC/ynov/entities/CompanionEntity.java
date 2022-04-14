@@ -37,8 +37,8 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
     protected int getInventorySize() {return 12;}
 
     protected void createInventory() {
+        this.inventory = new SimpleContainer(getInventorySize());
         SimpleContainer simpleContainer = this.inventory;
-        this.inventory = new SimpleContainer(this.getInventorySize());
         if (simpleContainer != null) {
             simpleContainer.removeListener(this);
             int i = Math.min(simpleContainer.getContainerSize(), this.inventory.getContainerSize());
@@ -65,7 +65,7 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
 
         pPlayerEntity.nextContainerCounter();
         pPlayerEntity.connection.send(new ClientboundHorseScreenOpenPacket(pPlayerEntity.containerCounter, this.inventory.getContainerSize(), this.getId()));
-        pPlayerEntity.containerMenu = new CompanionInventoryMenu(pPlayerEntity.containerCounter, pPlayerEntity.getInventory(), this.inventory, this);
+        pPlayerEntity.containerMenu = new CompanionInventoryMenu(pPlayerEntity.containerCounter, pPlayerEntity.getInventory(), this);
         pPlayerEntity.initMenu(pPlayerEntity.containerMenu);
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.event.entity.player.PlayerContainerEvent.Open(pPlayerEntity, pPlayerEntity.containerMenu));
     }
