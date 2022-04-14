@@ -20,6 +20,6 @@ public class ModItemTags extends ItemTagsProvider {
 
     @Override
     public String getName() {
-        return "Tutorial Tags";
+        return "Companion Tags";
     }
 }
