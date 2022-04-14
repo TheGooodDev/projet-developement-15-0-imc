@@ -81,7 +81,7 @@ public class Registration {
     public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new Block(WOOD));
     public static final RegistryObject<SlabBlock> PEAR_SLAB = BLOCKS.register("pear_slab", () -> new SlabBlock(WOOD));
     public static final RegistryObject<Block> PEAR_STAIRS = BLOCKS.register("pear_stairs", () -> new Block(WOOD));
-    public static final RegistryObject<Block> PEAR_BUTTON = BLOCKS.register("pear_button", () -> new Block(WOOD));
+    public static final RegistryObject<ButtonBlock> PEAR_BUTTON = BLOCKS.register("pear_button", () -> new WoodButtonBlock(WOOD));
     public static final RegistryObject<FenceBlock> PEAR_FENCE = BLOCKS.register("pear_fence", () -> new FenceBlock(WOOD));
     public static final RegistryObject<FenceGateBlock> PEAR_FENCE_GATE = BLOCKS.register("pear_fence_gate", () -> new FenceGateBlock(WOOD));
     public static final RegistryObject<LeavesBlock> PEAR_LEAVES_BLOCK = BLOCKS.register("pear_leaves_block", () -> new LeavesBlock(LEAVE));
@@ -95,7 +95,7 @@ public class Registration {
         public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new Block(WOOD));
         public static final RegistryObject<SlabBlock> ORANGE_SLAB = BLOCKS.register("orange_slab", () -> new SlabBlock(WOOD));
         public static final RegistryObject<Block> ORANGE_STAIRS = BLOCKS.register("orange_stairs", () -> new Block(WOOD));
-        public static final RegistryObject<Block> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> new Block(WOOD));
+        public static final RegistryObject<ButtonBlock> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> new WoodButtonBlock(WOOD));
         public static final RegistryObject<FenceBlock> ORANGE_FENCE = BLOCKS.register("orange_fence", () -> new FenceBlock(WOOD));
         public static final RegistryObject<FenceGateBlock> ORANGE_FENCE_GATE = BLOCKS.register("orange_fence_gate", () -> new FenceGateBlock(WOOD));
         public static final RegistryObject<LeavesBlock> ORANGE_LEAVES_BLOCK = BLOCKS.register("orange_leaves_block", () -> new LeavesBlock(LEAVE));
@@ -110,7 +110,7 @@ public class Registration {
         public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new Block(WOOD));
         public static final RegistryObject<SlabBlock> BANANA_SLAB = BLOCKS.register("banana_slab", () -> new SlabBlock(WOOD));
         public static final RegistryObject<Block> BANANA_STAIRS = BLOCKS.register("banana_stairs", () -> new Block(WOOD));
-        public static final RegistryObject<Block> BANANA_BUTTON = BLOCKS.register("banana_button", () -> new Block(WOOD));
+        public static final RegistryObject<ButtonBlock> BANANA_BUTTON = BLOCKS.register("banana_button", () -> new WoodButtonBlock(WOOD));
         public static final RegistryObject<FenceBlock> BANANA_FENCE = BLOCKS.register("banana_fence", () -> new FenceBlock(WOOD));
         public static final RegistryObject<FenceGateBlock> BANANA_FENCE_GATE = BLOCKS.register("banana_fence_gate", () -> new FenceGateBlock(WOOD));
         public static final RegistryObject<Block> BANANA_LEAVES_BLOCK = BLOCKS.register("banana_leaves_block", () -> new LeavesBlock(LEAVE));

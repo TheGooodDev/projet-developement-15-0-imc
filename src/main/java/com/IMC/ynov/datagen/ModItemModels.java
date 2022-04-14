@@ -48,18 +48,18 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(Registration.PEAR_TRAPDOOR.get().getRegistryName().getPath(), modLoc("block/pear_trapdoor"));
         withExistingParent(Registration.PEAR_WOOD.get().getRegistryName().getPath(), modLoc("block/pear_wood"));
         withExistingParent(Registration.PEAR_BUTTON.get().getRegistryName().getPath(), modLoc("block/pear_button"));
-        withExistingParent(Registration.ORANGE_DOOR.get().getRegistryName().getPath(), modLoc("block/pear_door"));
-        withExistingParent(Registration.ORANGE_FENCE.get().getRegistryName().getPath(), modLoc("block/pear_fence"));
-        withExistingParent(Registration.ORANGE_FENCE_GATE.get().getRegistryName().getPath(), modLoc("block/pear_fence_gate"));
-        withExistingParent(Registration.ORANGE_LEAVES_BLOCK.get().getRegistryName().getPath(), modLoc("block/pear_leaves_block"));
-        withExistingParent(Registration.ORANGE_LOG.get().getRegistryName().getPath(), modLoc("block/pear_log"));
-        withExistingParent(Registration.ORANGE_PLANKS.get().getRegistryName().getPath(), modLoc("block/pear_planks"));
-        withExistingParent(Registration.ORANGE_PRESSURE_PLATE.get().getRegistryName().getPath(), modLoc("block/pear_pressure_plate"));
-        withExistingParent(Registration.ORANGE_SAPLING.get().getRegistryName().getPath(), modLoc("block/pear_sapling"));
-        withExistingParent(Registration.ORANGE_SLAB.get().getRegistryName().getPath(), modLoc("block/pear_slab"));
-        withExistingParent(Registration.ORANGE_STAIRS.get().getRegistryName().getPath(), modLoc("block/pear_stairs"));
-        withExistingParent(Registration.ORANGE_TRAPDOOR.get().getRegistryName().getPath(), modLoc("block/pear_trapdoor"));
-        withExistingParent(Registration.ORANGE_WOOD.get().getRegistryName().getPath(), modLoc("block/pear_wood"));
+        withExistingParent(Registration.ORANGE_DOOR.get().getRegistryName().getPath(), modLoc("block/orange_door"));
+        withExistingParent(Registration.ORANGE_FENCE.get().getRegistryName().getPath(), modLoc("block/orange_fence"));
+        withExistingParent(Registration.ORANGE_FENCE_GATE.get().getRegistryName().getPath(), modLoc("block/orange_fence_gate"));
+        withExistingParent(Registration.ORANGE_LEAVES_BLOCK.get().getRegistryName().getPath(), modLoc("block/orange_leaves_block"));
+        withExistingParent(Registration.ORANGE_LOG.get().getRegistryName().getPath(), modLoc("block/orange_log"));
+        withExistingParent(Registration.ORANGE_PLANKS.get().getRegistryName().getPath(), modLoc("block/orange_planks"));
+        withExistingParent(Registration.ORANGE_PRESSURE_PLATE.get().getRegistryName().getPath(), modLoc("block/orange_pressure_plate"));
+        withExistingParent(Registration.ORANGE_SAPLING.get().getRegistryName().getPath(), modLoc("block/orange_sapling"));
+        withExistingParent(Registration.ORANGE_SLAB.get().getRegistryName().getPath(), modLoc("block/orange_slab"));
+        withExistingParent(Registration.ORANGE_STAIRS.get().getRegistryName().getPath(), modLoc("block/orange_stairs"));
+        withExistingParent(Registration.ORANGE_TRAPDOOR.get().getRegistryName().getPath(), modLoc("block/orange_trapdoor"));
+        withExistingParent(Registration.ORANGE_WOOD.get().getRegistryName().getPath(), modLoc("block/orange_wood"));
 
         singleTexture(Registration.PEAR.get().getRegistryName().getPath(),
                 mcLoc("item/generated"),

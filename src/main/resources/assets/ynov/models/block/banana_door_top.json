@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/door_top",
+  "parent": "block/door_top",
   "textures": {
     "top": "ynov:block/banana_door_top",
     "bottom": "ynov:block/banana_door_bottom"
