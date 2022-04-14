@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "ynov:block/orange_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "ynov:block/orange_log"
+    },
+    "axis=z": {
+      "model": "ynov:block/orange_log_horizontal",
+      "x": 90
+    }
+  }
+}

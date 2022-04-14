@@ -15,13 +15,9 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup." + TAB_NAME, "Tutorial");
+        add("itemGroup." + TAB_NAME, "Companion");
 
-        add(Registration.MYSTERIOUS_ORE_OVERWORLD.get(), "Mysterious ore");
-        add(Registration.MYSTERIOUS_ORE_NETHER.get(), "Mysterious ore");
-        add(Registration.MYSTERIOUS_ORE_END.get(), "Mysterious ore");
-        add(Registration.MYSTERIOUS_ORE_DEEPSLATE.get(), "Mysterious ore");
-        add(Registration.THIEF_EGG.get(), "Companion egg");
+        add(Registration.COMPANION_EGG.get(), "Companion egg");
         add(Registration.BANANA_LOG.get(), "Banana log");
         add(Registration.BANANA_WOOD.get(), "Banana wood");
         add(Registration.BANANA_FENCE.get(), "Banana fence");
@@ -67,7 +63,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(Registration.ORANGE.get(), "Orange");
         add(Registration.FRUIT_SALAD.get(), "Salad fruit");
 
-        add(Registration.THIEF.get(), "Companion");
+        add(Registration.COMPANION.get(), "Companion");
 
     }
 }

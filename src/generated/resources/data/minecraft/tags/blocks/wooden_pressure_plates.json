@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "ynov:pear_pressure_plate",
+    "ynov:banana_pressure_plate",
+    "ynov:orange_pressure_plate"
+  ]
+}

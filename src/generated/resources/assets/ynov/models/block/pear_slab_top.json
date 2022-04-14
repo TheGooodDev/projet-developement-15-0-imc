@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "ynov:block/pear_planks",
+    "bottom": "ynov:block/pear_planks",
+    "top": "ynov:block/pear_planks"
+  }
+}

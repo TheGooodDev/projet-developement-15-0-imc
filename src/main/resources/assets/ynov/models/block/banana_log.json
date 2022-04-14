@@ -1,7 +1,0 @@
-{
-  "parent": "block/cube_column",
-  "textures": {
-    "end": "ynov:block/banana_log_top",
-    "side": "ynov:block/banana_log"
-  }
-}

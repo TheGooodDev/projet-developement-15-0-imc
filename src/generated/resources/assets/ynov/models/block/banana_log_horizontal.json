@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "ynov:block/banana_log",
+    "end": "ynov:block/banana_log_top"
+  }
+}
