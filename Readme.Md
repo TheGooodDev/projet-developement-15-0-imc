@@ -9,17 +9,18 @@
 4. [Creator](#creator)
 ### General Info
 ***
+#### Version 0.0.0
 This mod will add new content to minecraft, that will upgrade user experience.<br>
 With:<br>
 New block 🟦<br>
 New Tools 🔨<br>
 And Companion 🐶👷<br>
 ### Screenshot
-![Image text](https://img.lemde.fr/2012/05/14/64/0/1024/512/664/0/75/0/ill_1701005_6005_minecraft.jpg)
+![Image text](https://i.imgur.com/8PeaVxl.png)
 ## Technologies
 ***
 A list of technologies used within the project:
-* [Minecraft Forge](https://files.minecraftforge.net/net/minecraftforge/forge/): Version 39.0.19
+* [Minecraft Forge](https://files.minecraftforge.net/net/minecraftforge/forge/): Version 39.0.20
 * [Minecraft](https://www.minecraft.net/fr-fr): Version 1.18.1
 * Java
 ## Installation
@@ -30,6 +31,9 @@ $ git clone https://github.com/Lyon-Ynov-Campus/projet-developement-15-0-imc.git
 $ cd ../path/to/the/file
 ```
 And ```open with your IDE``` to start
+
+```- run the datagen with gradle```<br>
+```- run Client```
 
 
 
