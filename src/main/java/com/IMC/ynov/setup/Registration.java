@@ -4,7 +4,10 @@ package com.IMC.ynov.setup;
 
 import com.IMC.ynov.entities.CompanionEntity;
 import com.IMC.ynov.ModFoods;
+import com.IMC.ynov.world.features.tree.BananaTreeGrower;
+import com.IMC.ynov.world.features.tree.OrangeTreeGrower;
 import com.IMC.ynov.world.features.tree.PearTreeFeature;
+import com.IMC.ynov.world.features.tree.PearTreeGrower;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -78,7 +81,7 @@ public class Registration {
     public static final RegistryObject<DoorBlock> PEAR_DOOR = BLOCKS.register("pear_door", () -> new DoorBlock(WOOD));
     public static final RegistryObject<TrapDoorBlock> PEAR_TRAPDOOR = BLOCKS.register("pear_trapdoor", () -> new TrapDoorBlock(WOOD));
     public static final RegistryObject<Block> PEAR_PRESSURE_PLATE = BLOCKS.register("pear_pressure_plate", () -> new Block(WOOD));
-    public static final RegistryObject<Block> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new Block(WOOD));
+    public static final RegistryObject<SaplingBlock> PEAR_SAPLING = BLOCKS.register("pear_sapling", () -> new SaplingBlock(new PearTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
     public static final RegistryObject<SlabBlock> PEAR_SLAB = BLOCKS.register("pear_slab", () -> new SlabBlock(WOOD));
     public static final RegistryObject<Block> PEAR_STAIRS = BLOCKS.register("pear_stairs", () -> new Block(WOOD));
     public static final RegistryObject<ButtonBlock> PEAR_BUTTON = BLOCKS.register("pear_button", () -> new WoodButtonBlock(WOOD));
@@ -92,7 +95,7 @@ public class Registration {
         public static final RegistryObject<DoorBlock> ORANGE_DOOR = BLOCKS.register("orange_door", () -> new DoorBlock(WOOD));
         public static final RegistryObject<TrapDoorBlock> ORANGE_TRAPDOOR = BLOCKS.register("orange_trapdoor", () -> new TrapDoorBlock(WOOD));
         public static final RegistryObject<Block> ORANGE_PRESSURE_PLATE = BLOCKS.register("orange_pressure_plate", () -> new Block(WOOD));
-        public static final RegistryObject<Block> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new Block(WOOD));
+        public static final RegistryObject<SaplingBlock> ORANGE_SAPLING = BLOCKS.register("orange_sapling", () -> new SaplingBlock(new OrangeTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
         public static final RegistryObject<SlabBlock> ORANGE_SLAB = BLOCKS.register("orange_slab", () -> new SlabBlock(WOOD));
         public static final RegistryObject<Block> ORANGE_STAIRS = BLOCKS.register("orange_stairs", () -> new Block(WOOD));
         public static final RegistryObject<ButtonBlock> ORANGE_BUTTON = BLOCKS.register("orange_button", () -> new WoodButtonBlock(WOOD));
@@ -107,7 +110,7 @@ public class Registration {
         public static final RegistryObject<DoorBlock> BANANA_DOOR = BLOCKS.register("banana_door", () -> new DoorBlock(WOOD));
         public static final RegistryObject<TrapDoorBlock> BANANA_TRAPDOOR = BLOCKS.register("banana_trapdoor", () -> new TrapDoorBlock(WOOD));
         public static final RegistryObject<Block> BANANA_PRESSURE_PLATE = BLOCKS.register("banana_pressure_plate", () -> new Block(WOOD));
-        public static final RegistryObject<Block> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new Block(WOOD));
+        public static final RegistryObject<SaplingBlock> BANANA_SAPLING = BLOCKS.register("banana_sapling", () -> new SaplingBlock(new BananaTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
         public static final RegistryObject<SlabBlock> BANANA_SLAB = BLOCKS.register("banana_slab", () -> new SlabBlock(WOOD));
         public static final RegistryObject<Block> BANANA_STAIRS = BLOCKS.register("banana_stairs", () -> new Block(WOOD));
         public static final RegistryObject<ButtonBlock> BANANA_BUTTON = BLOCKS.register("banana_button", () -> new WoodButtonBlock(WOOD));
