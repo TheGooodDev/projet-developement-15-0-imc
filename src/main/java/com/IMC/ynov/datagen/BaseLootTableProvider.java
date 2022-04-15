@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -48,6 +49,20 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
     }
 
     protected abstract void addTables();
+
+    protected LootTable.Builder createStandardTable(String name, Block block) {
+        LootPool.Builder builder = LootPool.lootPool()
+                .name(name)
+                .setRolls(ConstantValue.exactly(1));
+        return LootTable.lootTable().withPool(builder);
+    }
+
+    protected LootTable.Builder leaveTable(String name, Item item, SaplingBlock saplingBlock) {
+        LootPool.Builder builder = LootPool.lootPool()
+                .name(name)
+                .setRolls(ConstantValue.exactly(1));
+        return LootTable.lootTable().withPool(builder);
+    }
 
     @Override
     public void run(HashCache cache) {
