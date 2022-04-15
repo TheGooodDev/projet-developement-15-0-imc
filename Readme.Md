@@ -36,9 +36,9 @@ And ```open with your IDE``` to start
 ```- run Client```
 
 How to play with.
--Install the .jar file
--Download Minecraft forge 1.18.1 39.0.20
--And put the .jar file in the mod folder of your minecraft
+-Install the .jar file<br>
+-Download Minecraft forge 1.18.1 39.0.20<br>
+-And put the .jar file in the mod folder of your minecraft<br>
 
 ## Creator
 ***
