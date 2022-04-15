@@ -6,6 +6,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 
@@ -19,11 +20,8 @@ public class ModRecipes extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(Registration.PEAR_BUTTON.get())
-                .pattern("w#w")
-                .pattern("www")
-                .pattern("www")
-                .define('#', Registration.PEAR_PLANKS.get())
+        ShapelessRecipeBuilder.shapeless(Registration.PEAR_BUTTON.get())
+                .requires(Registration.PEAR_PLANKS.get(), 1)
                 .group("ynov")
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.PEAR_SLAB.get())
