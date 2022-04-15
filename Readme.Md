@@ -9,7 +9,7 @@
 4. [Creator](#creator)
 ### General Info
 ***
-#### Version 0.0.0
+#### Version 1.0.0
 This mod will add new content to minecraft, that will upgrade user experience.<br>
 With:<br>
 New block 🟦<br>
