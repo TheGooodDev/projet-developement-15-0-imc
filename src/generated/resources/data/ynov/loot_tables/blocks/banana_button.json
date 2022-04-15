@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "banana button",
+      "name": "banana_button",
       "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": []

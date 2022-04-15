@@ -18,6 +18,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.SitWhenOrderedToGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -64,6 +65,7 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
 
     @Override
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new SitWhenOrderedToGoal(this));
         this.goalSelector.addGoal(0, new CompanionBlockGoal(this, 1.3));
         this.goalSelector.addGoal(1, new CompanionFollowOwnerGoal(this, 1.0D, 7.0F, 2.0F, false));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8));
@@ -123,6 +125,11 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
                 } else  if (pPlayer.isSecondaryUseActive()) {
                     openInventory(pPlayer);
                     return InteractionResult.sidedSuccess(this.level.isClientSide);
+                } else{
+                    this.setOrderedToSit(!this.isOrderedToSit());
+                    this.jumping = false;
+                    this.navigation.stop();
+                    return InteractionResult.SUCCESS;
                 }
             } else if (itemstack.is(Items.DIAMOND) ) {
                 if (!pPlayer.getAbilities().instabuild) {
