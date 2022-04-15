@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ynov:fruit_salad"
+    ]
+  },
+  "criteria": {
+    "orange": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:bowl"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ynov:fruit_salad"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "orange",
+      "has_the_recipe"
+    ]
+  ]
+}

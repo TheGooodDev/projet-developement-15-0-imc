@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "ynov",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ynov:orange_planks"
+    }
+  },
+  "result": {
+    "item": "ynov:orange_stairs"
+  }
+}
