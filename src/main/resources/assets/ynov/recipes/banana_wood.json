@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "ynov:banana_log"
+    }
+  },
+  "result": {
+    "item": "ynov:banana_wood",
+    "count": 3
+  }
+}
