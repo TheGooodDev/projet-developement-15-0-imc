@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ynov:mysterious_ore_overworld",
+    "ynov:mysterious_ore_nether",
+    "ynov:mysterious_ore_end",
+    "ynov:mysterious_ore_deepslate"
+  ]
+}
