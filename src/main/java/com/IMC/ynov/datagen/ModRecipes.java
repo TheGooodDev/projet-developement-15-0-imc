@@ -27,7 +27,7 @@ public class ModRecipes extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(Registration.PEAR_BUTTON.get())
                 .requires(Registration.PEAR_PLANKS.get(), 1)
                 .group(CompanionMod.MODID)
-                .save(consumer);
+                .unlockedBy("pear button", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BAMBOO)).save(consumer);
         ShapedRecipeBuilder.shaped(Registration.PEAR_SLAB.get())
                 .pattern("   ")
                 .pattern("   ")
