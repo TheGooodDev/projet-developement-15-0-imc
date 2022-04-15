@@ -153,6 +153,7 @@ public class ModRecipes extends RecipeProvider {
                 .define('b', Registration.PEAR.get())
                 .define('c', Registration.ORANGE.get())
                 .define('d', Items.BOWL)
+                .group("ynov")
                 .save(consumer);
     }
 }
