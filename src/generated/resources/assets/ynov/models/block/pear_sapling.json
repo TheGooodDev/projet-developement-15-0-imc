@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cube_cross",
+  "parent": "minecraft:block/cube_all",
   "textures": {
     "all": "ynov:block/pear_sapling"
   }
