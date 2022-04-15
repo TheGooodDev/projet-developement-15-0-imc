@@ -2,14 +2,18 @@ package com.IMC.ynov.setup;
 
 
 
+import com.IMC.ynov.container.CompanionMenu;
 import com.IMC.ynov.entities.CompanionEntity;
 import com.IMC.ynov.ModFoods;
 import com.IMC.ynov.world.features.tree.BananaTreeGrower;
 import com.IMC.ynov.world.features.tree.OrangeTreeGrower;
 import com.IMC.ynov.world.features.tree.PearTreeFeature;
 import com.IMC.ynov.world.features.tree.PearTreeGrower;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -21,6 +25,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,13 +41,14 @@ public class Registration {
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     private static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
     private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, MODID);
-
+    public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(bus);
         ITEMS.register(bus);
         ENTITIES.register(bus);
         FEATURES.register(bus);
+        CONTAINERS.register(bus);
     }
 
 
@@ -172,6 +178,19 @@ public class Registration {
                 .setShouldReceiveVelocityUpdates(false)
                 .build("companion"));
         public static final RegistryObject<Item> COMPANION_EGG = ITEMS.register("companion", () -> new ForgeSpawnEggItem(COMPANION, 0xff0000, 0x00ff00, ITEM_PROPERTIES));
+
+        public static final RegistryObject<MenuType<CompanionMenu>> COMPANION_INVENTORY = CONTAINERS.register("companion_inventory",
+            () -> IForgeMenuType.create((windowId, inv, data) -> {
+                Entity entity = Minecraft.getInstance().level.getEntity(data.readInt());
+
+                if (entity instanceof CompanionEntity companionEntity) {
+                    return new CompanionMenu(windowId, inv, companionEntity);
+                } else {
+                    throw new IllegalStateException("Tried to open a miner minion inventory with a non miner minion entity!");
+                }
+
+            }));
+
 
         public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {
             return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES));

@@ -53,21 +53,4 @@ public class CompanionScreen extends AbstractContainerScreen<CompanionMenu> {
         blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
     }
 
-    private void renderSlotLock(PoseStack poseStack, int mouseX, int mouseY, int unlockAt, int slotNumber) {
-        int x = (slotNumber % 5) * 18 + getGuiLeft() + 44;
-        int y = (slotNumber / 5) * 18 + getGuiTop() + 20;
-
-        drawCenteredString(poseStack, font, String.valueOf(unlockAt), x + 8, y + 4, Color.GRAY.getRGB());
-
-        if (mouseX >= x && mouseX <= x + 16) {
-            if (mouseY >= y && mouseY <= y + 16) {
-                MutableComponent hoverMessage = new TranslatableComponent("skyblock.gui.minion.slot.unlock.hover", new TextComponent(String.valueOf(unlockAt))
-                        .withStyle(ChatFormatting.BOLD)
-                        .withStyle(ChatFormatting.DARK_RED))
-                        .withStyle(ChatFormatting.RED);
-
-                renderTooltip(poseStack, font.split(hoverMessage, 150), mouseX, mouseY);
-            }
-        }
-    }
 }

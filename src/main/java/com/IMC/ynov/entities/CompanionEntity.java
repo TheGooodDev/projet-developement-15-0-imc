@@ -58,12 +58,14 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
     public CompanionEntity(EntityType<? extends CompanionEntity> type, Level worldIn) {
         super(type, worldIn);
         this.setTame(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_PICKAXE));
         inventory = new CompanionInventory(15);
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new CompanionBlockGoal(Blocks.COAL_ORE, this, 1.3));
+        this.goalSelector.addGoal(0, new CompanionBlockGoal(this, 1.3));
+        this.goalSelector.addGoal(1, new CompanionFollowOwnerGoal(this, 1.0D, 7.0F, 2.0F, false));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8));
         this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
@@ -98,7 +100,7 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
     public static AttributeSupplier.Builder prepareAttributes() {
         return LivingEntity.createLivingAttributes()
                 .add(Attributes.ATTACK_DAMAGE, 3.0)
-                .add(Attributes.MAX_HEALTH, 1.0)
+                .add(Attributes.MAX_HEALTH, 20.0)
                 .add(Attributes.FOLLOW_RANGE, 40.0)
                 .add(Attributes.MOVEMENT_SPEED, 0.3);
     }

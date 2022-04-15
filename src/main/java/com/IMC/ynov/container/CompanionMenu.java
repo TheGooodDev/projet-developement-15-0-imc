@@ -40,6 +40,11 @@ public class CompanionMenu extends AbstractContainerMenu {
         int inventoryY = 20;
         for (int i = 0; i < companionInventory.getSlots(); i++) {
             addSlot(new CompanionInventorySlot(this.companionInventory, i, inventoryX, inventoryY, companion));
+            inventoryX += 18;
+            if((i+1)%(Math.round(this.companionInventory.getSlots()/3)) == 0){
+                inventoryX = 44;
+                inventoryY += 18;
+            }
         }
 
     }
@@ -61,7 +66,7 @@ public class CompanionMenu extends AbstractContainerMenu {
     public boolean stillValid(@NotNull Player pPlayer) {
         return this.companion.isAlive() && this.companion.distanceTo(pPlayer) < 8.0F;
     }
-/*
+
     public @NotNull ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(pIndex);
@@ -109,9 +114,5 @@ public class CompanionMenu extends AbstractContainerMenu {
         return itemstack;
     }
 
-    public void removed(@NotNull Player pPlayer) {
-        super.removed(pPlayer);
-        this.companionContainer.stopOpen(pPlayer);
-    }
-*/
+
 }

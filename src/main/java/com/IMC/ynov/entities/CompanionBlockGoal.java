@@ -110,11 +110,27 @@ public class CompanionBlockGoal extends Goal {
          if (this.breakTicks >= getMiningDuration()) {
             //finish
             if (mob.level instanceof ServerLevel level) {
-               //Get Block drops
                List<ItemStack> drops = Block.getDrops(mob.level.getBlockState(blockPos), level, this.blockPos, null, this.mob, new ItemStack(Items.NETHERITE_PICKAXE));
                AtomicBoolean hasAddedItem = new AtomicBoolean(false);
+               drops.forEach(itemStack -> {
+                  ItemStack remainingItems = itemStack.copy();
+                  for (int i = 0; i < mob.getInventory().getSlots() || remainingItems == ItemStack.EMPTY; i++) {
+                     if (mob.getInventory().insertItem(i, remainingItems, true) != ItemStack.EMPTY) {
+                        ItemStack notAddedItems = mob.getInventory().insertItem(i, remainingItems, false);
+                        if (notAddedItems.getCount() != remainingItems.getCount()) {
+                           hasAddedItem.set(true);
+                           remainingItems = notAddedItems;
+                        }
+                     } else {
+                        mob.getInventory().insertItem(i, remainingItems, false);
+                        hasAddedItem.set(true);
+                        break;
+                     }
+                  }
+               });
             }
-            this.mob.level.destroyBlock(this.blockPos, true);
+            this.mob.level.destroyBlock(this.blockPos, false);
+
             this.blockPos = BlockPos.ZERO;
             this.blockmove = BlockPos.ZERO;
             this.breakTicks = 0;
@@ -144,7 +160,7 @@ public class CompanionBlockGoal extends Goal {
       double i = pPos.getX() - this.mob.getX();
       double l = pPos.getY() - this.mob.getY();
       double j = pPos.getZ() - this.mob.getZ();
-      if((double) i * i  <= 4D && j * j <= 4D && ( l >= -1.5D && l <= 3.5D)){
+      if((double) i * i  <= 6D && j * j <= 6D && ( l >= -1.5D && l <= 3.5D)){
          return true;
       }
       return false;
