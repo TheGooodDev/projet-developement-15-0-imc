@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ynov:banana_button"
+    ]
+  },
+  "criteria": {
+    "banana": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ynov:banana_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ynov:banana_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "banana",
+      "has_the_recipe"
+    ]
+  ]
+}

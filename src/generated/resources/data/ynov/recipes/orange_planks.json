@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "ynov",
+  "ingredients": [
+    {
+      "item": "ynov:orange_log"
+    }
+  ],
+  "result": {
+    "item": "ynov:orange_planks",
+    "count": 4
+  }
+}

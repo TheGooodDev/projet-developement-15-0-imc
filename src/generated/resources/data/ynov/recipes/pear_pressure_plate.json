@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "ynov",
+  "pattern": [
+    "   ",
+    "   ",
+    " ##"
+  ],
+  "key": {
+    "#": {
+      "item": "ynov:pear_planks"
+    }
+  },
+  "result": {
+    "item": "ynov:pear_pressure_plate"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "ynov:pear_pressure_plate"
+    ]
+  },
+  "criteria": {
+    "pear": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ynov:pear_log"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "ynov:pear_pressure_plate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pear",
+      "has_the_recipe"
+    ]
+  ]
+}
