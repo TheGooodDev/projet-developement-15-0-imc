@@ -19,7 +19,7 @@ public class CompanionMenu extends AbstractContainerMenu {
 
     private final InvWrapper playerInvWrapper;
     private final ItemStackHandler companionInventory;
-    private  final CompanionEntity companion;
+    private final CompanionEntity companion;
 
     public CompanionMenu(int pContainerId, Inventory inventory, CompanionEntity companion) {
         super(Registration.COMPANION_INVENTORY.get(), pContainerId);
@@ -29,6 +29,10 @@ public class CompanionMenu extends AbstractContainerMenu {
 
         setCompanionSlots();
         setPlayerSlots();
+    }
+
+    public CompanionEntity getCompanion() {
+        return companion;
     }
 
     private void setCompanionSlots() {
