@@ -20,9 +20,9 @@ public class ModRecipes extends RecipeProvider {
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(Registration.PEAR_BUTTON.get())
-                .pattern(" # ")
-                .pattern("   ")
-                .pattern("   ")
+                .pattern("w#w")
+                .pattern("www")
+                .pattern("www")
                 .define('#', Registration.PEAR_PLANKS.get())
                 .group("ynov")
                 .save(consumer);
