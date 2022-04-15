@@ -26,14 +26,16 @@ public class ModRecipes extends RecipeProvider {
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         ShapelessRecipeBuilder.shapeless(Registration.PEAR_BUTTON.get())
                 .requires(Registration.PEAR_PLANKS.get(), 1)
-                .group(CompanionMod.MODID)
-                .unlockedBy("pear button", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BAMBOO)).save(consumer);
+                .group("ynov")
+                .unlockedBy("pear",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.PEAR_LOG.get()))
+                .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.PEAR_SLAB.get())
                 .pattern("   ")
                 .pattern("   ")
                 .pattern("###")
                 .define('#', Registration.PEAR_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("pear",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.PEAR_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.PEAR_STAIRS.get())
                 .pattern("#  ")
@@ -41,6 +43,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.PEAR_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("pear",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.PEAR_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.PEAR_PRESSURE_PLATE.get())
                 .pattern("   ")
@@ -48,6 +51,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern(" ##")
                 .define('#', Registration.PEAR_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("pear",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.PEAR_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.PEAR_TRAPDOOR.get())
                 .pattern("   ")
@@ -55,6 +59,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.PEAR_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("pear",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.PEAR_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.PEAR_DOOR.get())
                 .pattern(" ##")
@@ -62,16 +67,19 @@ public class ModRecipes extends RecipeProvider {
                 .pattern(" ##")
                 .define('#', Registration.PEAR_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("pear",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.PEAR_LOG.get()))
                 .save(consumer);
-        ShapelessRecipeBuilder.shapeless(Registration.PEAR_PLANKS.get())
-                .requires(Registration.PEAR_LOG.get(), 4)
+        ShapelessRecipeBuilder.shapeless(Registration.PEAR_PLANKS.get(),  4)
+                .requires(Registration.PEAR_LOG.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("pear",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.PEAR_LOG.get()))
                 .save(consumer);
 
 
         ShapelessRecipeBuilder.shapeless(Registration.BANANA_BUTTON.get())
                 .requires(Registration.BANANA_PLANKS.get(), 1)
                 .group(CompanionMod.MODID)
+                .unlockedBy("banana",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.BANANA_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.BANANA_SLAB.get())
                 .pattern("   ")
@@ -79,6 +87,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.BANANA_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("banana",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.BANANA_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.BANANA_STAIRS.get())
                 .pattern("#  ")
@@ -86,6 +95,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.BANANA_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("banana",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.BANANA_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.BANANA_PRESSURE_PLATE.get())
                 .pattern("   ")
@@ -93,6 +103,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern(" ##")
                 .define('#', Registration.BANANA_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("banana",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.BANANA_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.BANANA_TRAPDOOR.get())
                 .pattern("   ")
@@ -100,6 +111,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.BANANA_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("banana",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.BANANA_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.BANANA_DOOR.get())
                 .pattern(" ##")
@@ -107,16 +119,19 @@ public class ModRecipes extends RecipeProvider {
                 .pattern(" ##")
                 .define('#', Registration.BANANA_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("banana",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.BANANA_LOG.get()))
                 .save(consumer);
-        ShapelessRecipeBuilder.shapeless(Registration.BANANA_PLANKS.get())
-                .requires(Registration.BANANA_LOG.get(), 4)
+        ShapelessRecipeBuilder.shapeless(Registration.BANANA_PLANKS.get(),4)
+                .requires(Registration.BANANA_LOG.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("banana",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.BANANA_LOG.get()))
                 .save(consumer);
 
 
         ShapelessRecipeBuilder.shapeless(Registration.ORANGE_BUTTON.get())
                 .requires(Registration.ORANGE_PLANKS.get(), 1)
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ORANGE_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.ORANGE_SLAB.get())
                 .pattern("   ")
@@ -124,6 +139,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.ORANGE_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ORANGE_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.ORANGE_STAIRS.get())
                 .pattern("#  ")
@@ -131,6 +147,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.ORANGE_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ORANGE_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.ORANGE_PRESSURE_PLATE.get())
                 .pattern("   ")
@@ -138,6 +155,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern(" ##")
                 .define('#', Registration.ORANGE_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ORANGE_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.ORANGE_TRAPDOOR.get())
                 .pattern("   ")
@@ -145,6 +163,7 @@ public class ModRecipes extends RecipeProvider {
                 .pattern("###")
                 .define('#', Registration.ORANGE_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ORANGE_LOG.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(Registration.ORANGE_DOOR.get())
                 .pattern(" ##")
@@ -152,10 +171,12 @@ public class ModRecipes extends RecipeProvider {
                 .pattern(" ##")
                 .define('#', Registration.ORANGE_PLANKS.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ORANGE_LOG.get()))
                 .save(consumer);
-        ShapelessRecipeBuilder.shapeless(Registration.ORANGE_PLANKS.get())
-                .requires(Registration.ORANGE_LOG.get(), 4)
+        ShapelessRecipeBuilder.shapeless(Registration.ORANGE_PLANKS.get(),4)
+                .requires(Registration.ORANGE_LOG.get())
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Registration.ORANGE_LOG.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(Registration.FRUIT_SALAD.get())
@@ -168,6 +189,7 @@ public class ModRecipes extends RecipeProvider {
                 .define('c', Registration.ORANGE.get())
                 .define('d', Items.BOWL)
                 .group(CompanionMod.MODID)
+                .unlockedBy("orange",InventoryChangeTrigger.TriggerInstance.hasItems(Items.BOWL))
                 .save(consumer);
     }
 }

@@ -15,7 +15,7 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup." + TAB_NAME, "Companion");
+        add("itemGroup." + TAB_NAME, "companion");
 
         add(Registration.COMPANION_EGG.get(), "Companion egg");
         add(Registration.BANANA_LOG.get(), "Banana log");
