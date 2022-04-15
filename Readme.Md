@@ -35,9 +35,10 @@ And ```open with your IDE``` to start
 ```- run the datagen with gradle```<br>
 ```- run Client```
 
-
-
-
+How to play with.
+-Install the .jar file
+-Download Minecraft forge 1.18.1 39.0.20
+-And put the .jar file in the mod folder of your minecraft
 
 ## Creator
 ***
