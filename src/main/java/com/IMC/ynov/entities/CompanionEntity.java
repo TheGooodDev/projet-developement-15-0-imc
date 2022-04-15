@@ -1,9 +1,11 @@
 package com.IMC.ynov.entities;
 
+import com.IMC.ynov.CompanionMod;
 import com.IMC.ynov.container.CompanionInventory;
 import com.IMC.ynov.container.CompanionMenu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundHorseScreenOpenPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -37,11 +39,8 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
 
 
     //------------------------------------------------------
-    private static final UUID ownerID = null;
 
     protected final ItemStackHandler inventory;
-
-    protected boolean isFull = false;
 
     private void openInventory(Player pPlayer) {
         if (pPlayer instanceof ServerPlayer serverPlayer) {
@@ -80,11 +79,13 @@ public class CompanionEntity extends TamableAnimal implements OwnableEntity, Con
     public void load(CompoundTag tag) {
         super.load(tag);
         breaking = tag.getBoolean("Breaking");
+        this.inventory.deserializeNBT(tag.getCompound("inventory"));
     }
 
     @Override
     public boolean save(CompoundTag tag) {
         tag.putBoolean("Breaking", breaking);
+        tag.put("inventory", this.inventory.serializeNBT());
         return super.save(tag);
     }
 

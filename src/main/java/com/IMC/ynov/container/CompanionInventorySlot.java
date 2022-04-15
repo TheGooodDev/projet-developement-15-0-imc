@@ -1,6 +1,7 @@
 package com.IMC.ynov.container;
 
 import com.IMC.ynov.entities.CompanionEntity;
+import com.IMC.ynov.events.CompanionEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -25,6 +26,8 @@ public class CompanionInventorySlot extends SlotItemHandler {
 
     @Override
     public void onTake(Player pPlayer, ItemStack pStack) {
-        super.onTake(pPlayer, pStack);
+        CompanionEvent.TakeItemStack takeItemStack = new CompanionEvent.TakeItemStack(companion, pStack, pPlayer);
+        MinecraftForge.EVENT_BUS.post(takeItemStack);
+        super.onTake(pPlayer, takeItemStack.getItemStack());
     }
 }

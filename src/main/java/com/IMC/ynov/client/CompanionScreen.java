@@ -22,7 +22,7 @@ public class CompanionScreen extends AbstractContainerScreen<CompanionMenu> {
     private final ResourceLocation gui = new ResourceLocation(CompanionMod.MODID, "textures/gui/companion_gui.png");
 
     public CompanionScreen(CompanionMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
-        super(pMenu, pPlayerInventory, pTitle);
+        super(pMenu, pPlayerInventory, TextComponent.EMPTY);
         imageHeight = 168;
     }
 

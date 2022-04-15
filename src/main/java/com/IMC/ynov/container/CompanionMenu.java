@@ -38,7 +38,7 @@ public class CompanionMenu extends AbstractContainerMenu {
     private void setCompanionSlots() {
         int inventoryX = 44;
         int inventoryY = 20;
-        for (int i = 4; i < companionInventory.getSlots(); i++) {
+        for (int i = 0; i < companionInventory.getSlots(); i++) {
             addSlot(new CompanionInventorySlot(this.companionInventory, i, inventoryX, inventoryY, companion));
         }
 
@@ -68,7 +68,7 @@ public class CompanionMenu extends AbstractContainerMenu {
         if (slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            int i = this.companionContainer.getContainerSize();
+            int i = this.companionInventory.getSlots();
             if (pIndex < i) {
                 if (!this.moveItemStackTo(itemstack1, i, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
