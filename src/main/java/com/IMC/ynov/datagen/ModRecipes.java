@@ -2,6 +2,7 @@ package com.IMC.ynov.datagen;
 
 import com.IMC.ynov.setup.Registration;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -9,6 +10,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.crafting.NBTIngredient;
 
 import java.util.function.Consumer;
 
